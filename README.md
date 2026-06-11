@@ -7,7 +7,7 @@
 [![CI](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-📘 **[Roadmap](./Roadmap.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header/releases)**
+📘 **[Roadmap](./ROADMAP.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header/releases)**
 
 > Lightweight, zero-config file headers for AI chats and humans.  
 > A VS Code extension by **Apathetic Tools**.
