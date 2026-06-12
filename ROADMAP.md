@@ -73,9 +73,9 @@ Features that improve the VS Code user experience.
 
 Improving reliability and ensuring stability across changes.
 
-- [ ] Integration tests for `activate()` lifecycle (mock VS Code API)
+- [x] ~Integration tests for `activate()` lifecycle (mock VS Code API)~ (omitted: lifecycle is already covered by E2E tests)
 - [x] End-to-end tests for header insertion on temporary files
-- [ ] Snapshot tests for header output (GTP?)
+- [x] Snapshot tests for header output (GTP)
 - [x] Unit tests for template and config parsing (🤖?)
 - [ ] Test behavior for renamed or moved files
 - [ ] Benchmark timings for various functionality that is repeatable

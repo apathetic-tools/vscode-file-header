@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header output snapshots > generates correct header for c (main.c) 1`] = `"// main.c (c)"`;
+
+exports[`Header output snapshots > generates correct header for clojure (core.clj) 1`] = `";; core.clj (clojure)"`;
+
+exports[`Header output snapshots > generates correct header for cpp (main.cpp) 1`] = `"// main.cpp (C++)"`;
+
+exports[`Header output snapshots > generates correct header for csharp (Program.cs) 1`] = `"// Program.cs (csharp)"`;
+
+exports[`Header output snapshots > generates correct header for css (styles.css) 1`] = `"/* styles.css (css) */"`;
+
+exports[`Header output snapshots > generates correct header for dockerfile (Dockerfile) 1`] = `"# Dockerfile (dockerfile)"`;
+
+exports[`Header output snapshots > generates correct header for go (main.go) 1`] = `"// main.go (go)"`;
+
+exports[`Header output snapshots > generates correct header for html (index.html) 1`] = `"<!-- index.html (html) -->"`;
+
+exports[`Header output snapshots > generates correct header for java (Main.java) 1`] = `"// Main.java (java)"`;
+
+exports[`Header output snapshots > generates correct header for jsonc (settings.json) 1`] = `"// settings.json (jsonc)"`;
+
+exports[`Header output snapshots > generates correct header for lua (script.lua) 1`] = `"-- script.lua (lua)"`;
+
+exports[`Header output snapshots > generates correct header for markdown (README.md) 1`] = `"<!-- README.md (markdown) -->"`;
+
+exports[`Header output snapshots > generates correct header for python (main.py) 1`] = `"# main.py (python)"`;
+
+exports[`Header output snapshots > generates correct header for ruby (app.rb) 1`] = `"# app.rb (ruby)"`;
+
+exports[`Header output snapshots > generates correct header for rust (main.rs) 1`] = `"// main.rs (rust)"`;
+
+exports[`Header output snapshots > generates correct header for sql (query.sql) 1`] = `"-- query.sql (sql)"`;
+
+exports[`Header output snapshots > generates correct header for typescript (index.ts) 1`] = `"// index.ts (typescript)"`;
+
+exports[`Header output snapshots > generates correct header for vb (script.vb) 1`] = `"' script.vb (vb)"`;
+
+exports[`Header output snapshots > generates correct header for xml (config.xml) 1`] = `"<!-- config.xml (xml) -->"`;
+
+exports[`Header output snapshots > generates correct header for yaml (docker-compose.yml) 1`] = `"# docker-compose.yml (yaml)"`;
