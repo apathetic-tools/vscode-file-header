@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": ".tsbuild/e2e",
+    "rootDir": ".",
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "types": ["mocha", "node"]
+  },
+  "include": ["e2e"],
+  "exclude": ["node_modules"]
+}

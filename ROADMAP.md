@@ -39,7 +39,7 @@ Core logic for detecting, generating, and updating headers.
 - [x] Handle edge cases like generated / ignored files (🤖?)
 - [ ] Configurable multi-line comment styles (🤖?)
 - [ ] Smarter detection of existing headers (🤖?)
-- [ ] Log errors like skipped insertions due to required config missing
+- [x] ~Log errors like skipped insertions due to required config missing~ (omitted: strong defaults mean no config is strictly required)
 
 ## ⚙️ Configuration
 
@@ -60,21 +60,21 @@ Enhancing configurability, schema validation, and migration.
 
 Features that improve the VS Code user experience.
 
-- [ ] Add schema validation and error messages (editor intellisense?)
-- [ ] Add “Reload Header” command to manually reinsert headers
-- [ ] Add command to open current config in editor
+- [x] Add schema validation and error messages (editor intellisense?)
+- [x] ~Add “Reload Header” command to manually reinsert headers~ (covered by "Update Header")
+- [x] ~Add command to open current config in editor~ (omitted: multiple config sources make "current" ambiguous)
 - [x] Command palette actions for "Insert Header" and "Update Header"
-- [ ] Context menu integration (🤖?)
-- [ ] Status bar indicator for header presence (🤖?)
+- [x] ~Context menu integration (🤖?)~ (omitted: command palette is sufficient, avoids crowding context menus)
+- [x] ~Status bar indicator for header presence (🤖?)~ (omitted: unnecessary UX, better served by debug logs)
 - [ ] Inline preview of resolved header template (🤖?)
-- [ ] VSCode "Quick fixes" for missing or invalid headers (🤖?)
+- [x] ~VSCode "Quick fixes" for missing or invalid headers (🤖?)~ (omitted: obtrusive UX, use command palette or auto-save instead)
 
 ## 🧪 Testing
 
 Improving reliability and ensuring stability across changes.
 
 - [ ] Integration tests for `activate()` lifecycle (mock VS Code API)
-- [ ] End-to-end tests for header insertion on temporary files
+- [x] End-to-end tests for header insertion on temporary files
 - [ ] Snapshot tests for header output (GTP?)
 - [x] Unit tests for template and config parsing (🤖?)
 - [ ] Test behavior for renamed or moved files

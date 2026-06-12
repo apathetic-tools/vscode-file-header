@@ -10,7 +10,7 @@ out/
 coverage/
 *.tsbuildinfo
 *.vsix
-
+.vscode-test/
 # Dependencies
 .pnpm-store
 node_modules/
