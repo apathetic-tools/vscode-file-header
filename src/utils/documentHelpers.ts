@@ -1,11 +1,16 @@
 import * as vscode from "vscode";
 
+import type { FileHeaderConfig } from "../config";
+
 /**
  * Finds the line number where the actual content starts,
- * skipping shebangs and markdown frontmatter.
+ * skipping shebangs, markdown frontmatter, and optionally license blocks.
  * Returns a 0-indexed line number.
  */
-export function getContentStartLine(document: vscode.TextDocument): number {
+export function getContentStartLine(
+	document: vscode.TextDocument,
+	config?: FileHeaderConfig,
+): number {
 	if (document.lineCount === 0) return 0;
 
 	let currentLine = 0;
@@ -25,7 +30,43 @@ export function getContentStartLine(document: vscode.TextDocument): number {
 			for (let i = currentLine + 1; i < document.lineCount; i++) {
 				if (document.lineAt(i).text.trim() === "---") {
 					// Found closing `---`
-					return i + 1;
+					currentLine = i + 1;
+					break;
+				}
+			}
+		}
+	}
+
+	if (currentLine >= document.lineCount) return currentLine;
+
+	// 3. Skip comments containing insertAfterWords
+	if (config?.insertAfterWords && config.insertAfterWords.length > 0) {
+		let firstNonBlankIndex = currentLine;
+		while (
+			firstNonBlankIndex < document.lineCount &&
+			document.lineAt(firstNonBlankIndex).text.trim().length === 0
+		) {
+			firstNonBlankIndex++;
+		}
+
+		if (firstNonBlankIndex < document.lineCount) {
+			const firstNonBlank = document.lineAt(firstNonBlankIndex).text.trim();
+			if (isCommentLine(firstNonBlank, document.languageId)) {
+				const { lines: block, endLine } = getCommentBlock(
+					document,
+					firstNonBlankIndex,
+					document.languageId,
+				);
+
+				const hasInsertAfterWord = block.some((line) => {
+					const lowerLine = line.toLowerCase();
+					return config.insertAfterWords!.some((word) =>
+						lowerLine.includes(word.toLowerCase()),
+					);
+				});
+
+				if (hasInsertAfterWord) {
+					currentLine = endLine + 1;
 				}
 			}
 		}
@@ -108,10 +149,11 @@ export function getCommentBlock(
 	document: vscode.TextDocument,
 	startIndex: number,
 	languageId?: string,
-): string[] {
+): { lines: string[]; endLine: number } {
 	const block: string[] = [];
 	const firstLine = document.lineAt(startIndex).text.trim();
 	block.push(firstLine);
+	let endLine = startIndex;
 
 	let inBlockComment = false;
 	let blockEndTokens: string[] = [];
@@ -150,12 +192,13 @@ export function getCommentBlock(
 				(token) => firstLine.endsWith(token) && firstLine.length > token.length,
 			)
 		) {
-			return block;
+			return { lines: block, endLine };
 		}
 
 		for (let i = startIndex + 1; i < document.lineCount; i++) {
 			const text = document.lineAt(i).text.trim();
 			block.push(text);
+			endLine = i;
 			if (blockEndTokens.some((token) => text.includes(token))) {
 				break;
 			}
@@ -168,11 +211,12 @@ export function getCommentBlock(
 			if (text.length > 0) {
 				if (isCommentLine(text, languageId)) {
 					block.push(text);
+					endLine = i;
 				} else {
 					break;
 				}
 			}
 		}
 	}
-	return block;
+	return { lines: block, endLine };
 }

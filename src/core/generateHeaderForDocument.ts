@@ -21,7 +21,7 @@ export function generateHeaderForDocument(
 	const paths = getFilePaths(doc);
 
 	// Skip if document already has a valid header
-	if (hasValidHeader(doc, paths)) return;
+	if (hasValidHeader(doc, paths, config)) return;
 
 	// Try languageId → then path
 	let template: ResolvedLanguageTemplate | undefined;

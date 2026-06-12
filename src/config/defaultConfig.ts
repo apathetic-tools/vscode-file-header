@@ -619,14 +619,6 @@ export const defaultConfig: FileHeaderConfig = {
 	roles: {},
 	include: [],
 	exclude: [],
-	skipWords: [
-		"auto",
-		"automatically",
-		"generated",
-		"copyright",
-		"(c)",
-		"©",
-		"license",
-		"licensed",
-	],
+	skipWords: ["auto", "automatically", "generated"],
+	insertAfterWords: ["copyright", "license", "(c)", "©", "licensed"],
 };

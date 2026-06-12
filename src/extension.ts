@@ -34,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const finalHeader = generateHeaderForDocument(config, doc);
 			if (!finalHeader) return;
 
-			const outdatedLine = findOutdatedHeaderLine(doc);
+			const outdatedLine = findOutdatedHeaderLine(doc, config);
 			if (outdatedLine !== undefined) {
 				vscode.window.showInformationMessage(
 					"Header already exists. Use 'Update Header' instead.",
@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
 				return;
 			}
 
-			const insertLine = getContentStartLine(doc);
+			const insertLine = getContentStartLine(doc, config);
 			await editor.edit((editBuilder) => {
 				editBuilder.insert(
 					new vscode.Position(insertLine, 0),
@@ -76,10 +76,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const finalHeader = generateHeaderForDocument(config, doc);
 			if (!finalHeader) return;
 
-			const outdatedLine = findOutdatedHeaderLine(doc);
+			const outdatedLine = findOutdatedHeaderLine(doc, config);
 			await editor.edit((editBuilder) => {
 				if (outdatedLine === undefined) {
-					const insertLine = getContentStartLine(doc);
+					const insertLine = getContentStartLine(doc, config);
 					editBuilder.insert(
 						new vscode.Position(insertLine, 0),
 						finalHeader + "\n\n",
@@ -115,7 +115,7 @@ export function activate(context: vscode.ExtensionContext) {
 				let edit: vscode.TextEdit | undefined;
 
 				if (config.autoUpdate) {
-					const outdatedLine = findOutdatedHeaderLine(doc);
+					const outdatedLine = findOutdatedHeaderLine(doc, config);
 					if (outdatedLine !== undefined) {
 						const lineRange = doc.lineAt(outdatedLine).range;
 						edit = vscode.TextEdit.replace(lineRange, finalHeader);
@@ -125,7 +125,7 @@ export function activate(context: vscode.ExtensionContext) {
 				if (!edit) {
 					if (!config.autoInsert) return [];
 
-					const insertLine = getContentStartLine(doc);
+					const insertLine = getContentStartLine(doc, config);
 					edit = vscode.TextEdit.insert(
 						new vscode.Position(insertLine, 0),
 						finalHeader + "\n\n",

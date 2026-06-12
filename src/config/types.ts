@@ -71,6 +71,9 @@ export interface FileHeaderConfig {
 
 	/** Words that, if present in the first line comment, signal a generated file */
 	skipWords?: string[];
+
+	/** Words that, if present in the first line comment block, signal a license/copyright block to skip over */
+	insertAfterWords?: string[];
 }
 
 /** Language header template keyed by VSCode language ID */

@@ -764,14 +764,24 @@
           "default": [
             "auto",
             "automatically",
-            "generated",
-            "copyright",
-            "(c)",
-            "©",
-            "license",
-            "licensed"
+            "generated"
           ],
           "description": "Array of words. If the first line of a file is a comment and contains any of these words, the file will be ignored.",
+          "scope": "resource"
+        },
+        "fileHeader.insertAfterWords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "copyright",
+            "license",
+            "(c)",
+            "©",
+            "licensed"
+          ],
+          "description": "Array of words. If the first line of a file is a comment block containing any of these words, the header will be inserted after it.",
           "scope": "resource"
         }
       }

@@ -7,6 +7,8 @@ import {
 } from "./documentHelpers";
 import type { PathList } from "./types";
 
+import type { FileHeaderConfig } from "../config";
+
 /**
  * Checks whether the document already has a valid header comment.
  * - Skips any leading blank lines.
@@ -16,10 +18,11 @@ import type { PathList } from "./types";
 export function hasValidHeader(
 	document: vscode.TextDocument,
 	paths: PathList,
+	config?: FileHeaderConfig,
 ): boolean {
 	if (document.lineCount === 0) return false;
 
-	const startLine = getContentStartLine(document);
+	const startLine = getContentStartLine(document, config);
 
 	// Find the first non-empty line
 	let firstNonBlankIndex = -1;
@@ -52,7 +55,7 @@ export function hasValidHeader(
 	);
 
 	// Get the entire comment block to search for the path
-	const commentBlock = getCommentBlock(
+	const { lines: commentBlock } = getCommentBlock(
 		document,
 		firstNonBlankIndex,
 		document.languageId,
@@ -67,10 +70,11 @@ export function hasValidHeader(
  */
 export function findOutdatedHeaderLine(
 	document: vscode.TextDocument,
+	config?: FileHeaderConfig,
 ): number | undefined {
 	if (document.lineCount === 0) return undefined;
 
-	const startLine = getContentStartLine(document);
+	const startLine = getContentStartLine(document, config);
 
 	// Find the first non-empty line
 	let firstNonBlankIndex = -1;
@@ -89,7 +93,7 @@ export function findOutdatedHeaderLine(
 		return undefined;
 	}
 
-	const commentBlock = getCommentBlock(
+	const { lines: commentBlock } = getCommentBlock(
 		document,
 		firstNonBlankIndex,
 		document.languageId,

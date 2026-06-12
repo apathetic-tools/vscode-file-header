@@ -63,6 +63,39 @@ describe("getContentStartLine()", () => {
 		});
 		expect(getContentStartLine(doc)).toBe(0);
 	});
+
+	test("skips comments containing insertAfterWords", () => {
+		const doc = makeMockDocument({
+			text: [
+				"/*",
+				" * Copyright 2026",
+				" */",
+				"",
+				"console.log('hello');",
+			].join("\n"),
+			languageId: "javascript",
+		});
+		const config = { insertAfterWords: ["copyright"] } as any;
+		expect(getContentStartLine(doc, config)).toBe(3);
+	});
+
+	test("skips single-line comments containing insertAfterWords", () => {
+		const doc = makeMockDocument({
+			text: ["// (c) 2026", "// License MIT", "", "const x = 1;"].join("\n"),
+			languageId: "javascript",
+		});
+		const config = { insertAfterWords: ["license"] } as any;
+		expect(getContentStartLine(doc, config)).toBe(2);
+	});
+
+	test("does not skip comments without insertAfterWords", () => {
+		const doc = makeMockDocument({
+			text: ["// just a normal comment", "const x = 1;"].join("\n"),
+			languageId: "javascript",
+		});
+		const config = { insertAfterWords: ["copyright"] } as any;
+		expect(getContentStartLine(doc, config)).toBe(0);
+	});
 });
 
 describe("isCommentLine()", () => {
@@ -132,8 +165,8 @@ describe("getCommentBlock()", () => {
 			text: ["// Line 1", "// Line 2", "const x = 1;"].join("\n"),
 			languageId: "javascript",
 		});
-		const block = getCommentBlock(doc, 0, "javascript");
-		expect(block).toEqual(["// Line 1", "// Line 2"]);
+		const { lines } = getCommentBlock(doc, 0, "javascript");
+		expect(lines).toEqual(["// Line 1", "// Line 2"]);
 	});
 
 	test("extracts block comments", () => {
@@ -141,8 +174,8 @@ describe("getCommentBlock()", () => {
 			text: ["/*", " * Line 1", " * Line 2", " */", "const x = 1;"].join("\n"),
 			languageId: "javascript",
 		});
-		const block = getCommentBlock(doc, 0, "javascript");
-		expect(block).toEqual(["/*", "* Line 1", "* Line 2", "*/"]);
+		const { lines } = getCommentBlock(doc, 0, "javascript");
+		expect(lines).toEqual(["/*", "* Line 1", "* Line 2", "*/"]);
 	});
 
 	test("extracts single line block comment if closed on first line", () => {
@@ -150,8 +183,8 @@ describe("getCommentBlock()", () => {
 			text: ["/* Line 1 */", "const x = 1;"].join("\n"),
 			languageId: "javascript",
 		});
-		const block = getCommentBlock(doc, 0, "javascript");
-		expect(block).toEqual(["/* Line 1 */"]);
+		const { lines } = getCommentBlock(doc, 0, "javascript");
+		expect(lines).toEqual(["/* Line 1 */"]);
 	});
 
 	test("extracts generic block comments when language unknown", () => {
@@ -159,8 +192,8 @@ describe("getCommentBlock()", () => {
 			text: ["<!--", "Line 1", "-->", "content"].join("\n"),
 			languageId: "unknown-lang",
 		});
-		const block = getCommentBlock(doc, 0, "unknown-lang");
-		expect(block).toEqual(["<!--", "Line 1", "-->"]);
+		const { lines } = getCommentBlock(doc, 0, "unknown-lang");
+		expect(lines).toEqual(["<!--", "Line 1", "-->"]);
 	});
 
 	test("stops extraction if not a comment line for single line style", () => {
@@ -168,7 +201,7 @@ describe("getCommentBlock()", () => {
 			text: ["// Line 1", "const x = 1;", "// Line 2"].join("\n"),
 			languageId: "javascript",
 		});
-		const block = getCommentBlock(doc, 0, "javascript");
-		expect(block).toEqual(["// Line 1"]);
+		const { lines } = getCommentBlock(doc, 0, "javascript");
+		expect(lines).toEqual(["// Line 1"]);
 	});
 });

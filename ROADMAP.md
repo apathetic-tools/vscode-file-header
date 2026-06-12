@@ -39,7 +39,7 @@ Core logic for detecting, generating, and updating headers.
 - [x] Handle edge cases like generated / ignored files
 - [ ] Configurable multi-line comment styles
 - [ ] Smarter detection of existing headers
-- [x] ~Log errors like skipped insertions due to required config missing~ (omitted: strong defaults mean no config is strictly required)
+- [ ] Configurable `insertAfterWords` to intelligently place the file header _below_ existing copyright/license blocks instead of at the very top.
 
 ## ⚙️ Configuration
 
