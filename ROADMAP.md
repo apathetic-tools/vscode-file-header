@@ -63,7 +63,7 @@ Features that improve the VS Code user experience.
 - [ ] Add schema validation and error messages (editor intellisense?)
 - [ ] Add “Reload Header” command to manually reinsert headers
 - [ ] Add command to open current config in editor
-- [ ] Command palette actions for "Insert Header" and "Update Header"
+- [x] Command palette actions for "Insert Header" and "Update Header"
 - [ ] Context menu integration (🤖?)
 - [ ] Status bar indicator for header presence (🤖?)
 - [ ] Inline preview of resolved header template (🤖?)

@@ -39,6 +39,16 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "vscode-file-header.insertHeader",
+        "title": "File Header: Insert Header"
+      },
+      {
+        "command": "vscode-file-header.updateHeader",
+        "title": "File Header: Update Header"
+      }
+    ],
     "configuration": {
       "title": "File Header for AI",
       "properties": {
