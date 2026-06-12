@@ -56,7 +56,9 @@ export function hasValidHeader(
  * Heuristically finds the line number of an outdated file header.
  * Returns the 0-indexed line number, or undefined if no header was found.
  */
-export function findOutdatedHeaderLine(document: vscode.TextDocument): number | undefined {
+export function findOutdatedHeaderLine(
+	document: vscode.TextDocument,
+): number | undefined {
 	if (document.lineCount === 0) return undefined;
 
 	const startLine = getContentStartLine(document);
@@ -87,7 +89,7 @@ export function findOutdatedHeaderLine(document: vscode.TextDocument): number | 
 			let stripped = text
 				.replace(/^(?:\/\/|#|<!--|\/\*|%|--|;|'|{-|{\!|\(\*|@\*|-#)\s*/, "")
 				.trim();
-			
+
 			// Strip common closing tokens
 			stripped = stripped.replace(/(?:-->|\*\/|%\}|\*@|#-\}|\*\))$/, "").trim();
 

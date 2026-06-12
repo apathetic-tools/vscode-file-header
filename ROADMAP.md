@@ -35,8 +35,8 @@ Core logic for detecting, generating, and updating headers.
 - [x] Add optional auto-update on save (`workspace.onDidSaveTextDocument`)
 - [ ] Add smart glob (GTP? regex?) and include/exclude handling for file targeting
 - [ ] Support all comment styles (single-line, multi-line, doc)
-- [ ] Detect and skip existing license headers (regex-based)
-- [ ] Handle edge cases like generated / ignored files (🤖?)
+- [x] Detect and skip existing license headers (regex-based)
+- [x] Handle edge cases like generated / ignored files (🤖?)
 - [ ] Configurable multi-line comment styles (🤖?)
 - [ ] Smarter detection of existing headers (🤖?)
 - [ ] Log errors like skipped insertions due to required config missing

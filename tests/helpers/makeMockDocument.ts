@@ -24,7 +24,7 @@ export function makeMockDocument({
 			text: lines[i] ?? "",
 		})) as unknown as vscode.TextDocument["lineAt"],
 		getText: () => text,
-		uri: { fsPath } as vscode.Uri,
+		uri: { fsPath, scheme: "file" } as vscode.Uri,
 	};
 
 	return partialDoc as vscode.TextDocument;

@@ -526,4 +526,15 @@ export const defaultConfig: FileHeaderConfig = {
 	},
 	languagesByPath: {},
 	roles: {},
+	ignore: [],
+	skipWords: [
+		"auto",
+		"automatically",
+		"generated",
+		"copyright",
+		"(c)",
+		"©",
+		"license",
+		"licensed",
+	],
 };

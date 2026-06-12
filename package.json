@@ -28,6 +28,7 @@
   "homepage": "https://github.com/apathetic-tools/vscode-file-header#readme",
   "type": "commonjs",
   "engines": {
+    "node": ">=24",
     "vscode": "^1.80.0"
   },
   "categories": [
@@ -63,6 +64,33 @@
           "default": true,
           "description": "Whether to automatically append a human-readable language label (e.g. '(TypeScript React)').",
           "scope": "resource"
+        },
+        "fileHeader.ignore": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Array of glob patterns or gitignore-style strings to ignore when inserting headers. Also respects `.gitignore` natively.",
+          "scope": "resource"
+        },
+        "fileHeader.skipWords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "auto",
+            "automatically",
+            "generated",
+            "copyright",
+            "(c)",
+            "©",
+            "license",
+            "licensed"
+          ],
+          "description": "Array of words. If the first line of a file is a comment and contains any of these words, the file will be ignored.",
+          "scope": "resource"
         }
       }
     }
@@ -92,6 +120,7 @@
     "verify": "pnpm run lint:prettier & pnpm run lint:eslint & pnpm run lint:tsc & pnpm run test"
   },
   "dependencies": {
+    "ignore": "^7.0.5",
     "minimatch": "^10.2.5"
   },
   "devDependencies": {

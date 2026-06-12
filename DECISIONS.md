@@ -40,7 +40,7 @@ Implications, trade-offs, or follow-ups to keep in mind.
 
 ### Context
 
-Originally, auto-updating header paths was disabled to avoid confusion on renames, and auto-insert was not configurable. However, for a tool focused on "maximum convenience for AI context", **stale context is harmful**. If a user renames a file but forgets to update the header, they feed incorrect context to the LLM. 
+Originally, auto-updating header paths was disabled to avoid confusion on renames, and auto-insert was not configurable. However, for a tool focused on "maximum convenience for AI context", **stale context is harmful**. If a user renames a file but forgets to update the header, they feed incorrect context to the LLM.
 
 ### Options Considered
 
@@ -49,7 +49,7 @@ Originally, auto-updating header paths was disabled to avoid confusion on rename
 
 ### Decision
 
-Set `autoUpdate = true` and `autoInsert = true` by default. 
+Set `autoUpdate = true` and `autoInsert = true` by default.
 
 ### Consequences
 

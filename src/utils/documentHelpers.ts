@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 
 /**
- * Finds the line number where the actual content starts, 
+ * Finds the line number where the actual content starts,
  * skipping shebangs and markdown frontmatter.
  * Returns a 0-indexed line number.
  */

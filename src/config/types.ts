@@ -62,6 +62,12 @@ export interface FileHeaderConfig {
 
 	/** Optional roles to match against file globs */
 	roles?: Roles;
+
+	/** Patterns to ignore for header insertion */
+	ignore?: GlobString[];
+
+	/** Words that, if present in the first line comment, signal a generated file */
+	skipWords?: string[];
 }
 
 /** Language header template keyed by VSCode language ID */

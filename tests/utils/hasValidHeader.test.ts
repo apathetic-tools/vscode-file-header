@@ -63,7 +63,9 @@ describe("hasValidHeader()", () => {
 
 	test("skips shebang line and blank lines", () => {
 		const doc = makeMockDocument({
-			text: ["#!/usr/bin/env node", "", "// src/components/Button.tsx"].join("\n"),
+			text: ["#!/usr/bin/env node", "", "// src/components/Button.tsx"].join(
+				"\n",
+			),
 		});
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});

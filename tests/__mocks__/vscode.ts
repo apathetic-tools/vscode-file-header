@@ -2,8 +2,17 @@
 
 export const workspace = {
 	getWorkspaceFolder: vi.fn(),
+	asRelativePath: vi.fn(),
+	fs: {
+		readFile: vi.fn(),
+	},
 };
 
-export type Uri = { fsPath: string };
-export type TextDocument = { uri: Uri };
-export type WorkspaceFolder = { uri: Uri };
+export const Uri = {
+	joinPath: vi.fn(),
+	file: (path: string) => ({ fsPath: path, scheme: "file" }),
+};
+
+export type UriType = { fsPath: string; scheme: string };
+export type TextDocument = { uri: UriType };
+export type WorkspaceFolder = { uri: UriType };

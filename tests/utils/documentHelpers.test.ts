@@ -31,7 +31,13 @@ describe("getContentStartLine()", () => {
 
 	test("skips frontmatter and shebang if somehow combined (unlikely but possible)", () => {
 		const doc = makeMockDocument({
-			text: ["#!/usr/bin/env node", "---", "title: Hello", "---", "# Header"].join("\n"),
+			text: [
+				"#!/usr/bin/env node",
+				"---",
+				"title: Hello",
+				"---",
+				"# Header",
+			].join("\n"),
 			languageId: "markdown",
 		});
 		expect(getContentStartLine(doc)).toBe(4);
