@@ -52,6 +52,13 @@ export default defineConfig([
 		},
 	},
 
+	{
+		files: ["tests/**/*.ts"],
+		rules: {
+			"@typescript-eslint/no-explicit-any": "off",
+		},
+	},
+
 	// Prettier last — disables conflicting rules
 	prettier,
 ]);

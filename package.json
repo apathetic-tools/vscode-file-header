@@ -790,11 +790,11 @@
     "format": "prettier --write .",
     "check": "pnpm run lint:prettier && pnpm run lint:eslint && pnpm run lint:tsc",
     "lint:prettier": "prettier --check .",
-    "lint:eslint": "eslint . --ext .ts",
+    "lint:eslint": "eslint \"{src,e2e,tests}/**/*.ts\"",
     "lint:tsc": "tsc --noEmit -p tsconfig.build.json",
     "fix": "pnpm run fix:prettier & pnpm run fix:eslint & pnpm run lint:tsc",
     "fix:prettier": "prettier --write .",
-    "fix:eslint": "eslint . --ext .ts --fix",
+    "fix:eslint": "eslint \"{src,e2e,tests}/**/*.ts\" --fix",
     "test": "vitest run",
     "test:e2e": "pnpm run build && tsc -p ./tsconfig.e2e.json && node .tsbuild/e2e/e2e/runTest.js",
     "test:watch": "vitest",
@@ -837,7 +837,7 @@
   "lint-staged": {
     "*.ts": [
       "prettier --write",
-      "eslint --ext .ts --fix"
+      "eslint --fix"
     ],
     "*.{json,.jsonc,md,mdx,yml,yaml}": [
       "prettier --write"
