@@ -35,7 +35,7 @@ describe("Extension E2E Test Suite", () => {
 		console.log("---- GENERATED TEXT ----");
 		console.log(newText);
 		console.log("------------------------");
-		
+
 		// Cleanup
 		fs.unlinkSync(tmpFilePath);
 		await vscode.commands.executeCommand("workbench.action.closeActiveEditor");
