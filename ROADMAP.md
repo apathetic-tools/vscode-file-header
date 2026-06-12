@@ -33,12 +33,12 @@ Core logic for detecting, generating, and updating headers.
 - [x] Handle shebang lines in scripts — insert header after `#!` when present
 - [x] Handle frontmatter in markdown — insert header after `---` when present
 - [x] Add optional auto-update on save (`workspace.onDidSaveTextDocument`)
-- [x] Add smart glob (GTP? regex?) and include/exclude handling for file targeting
+- [x] Add smart glob (regex?) and include/exclude handling for file targeting
 - [x] Support all comment styles (single-line, multi-line, doc)
 - [x] Detect and skip existing license headers (regex-based)
-- [x] Handle edge cases like generated / ignored files (🤖?)
-- [ ] Configurable multi-line comment styles (🤖?)
-- [ ] Smarter detection of existing headers (🤖?)
+- [x] Handle edge cases like generated / ignored files
+- [ ] Configurable multi-line comment styles
+- [ ] Smarter detection of existing headers
 - [x] ~Log errors like skipped insertions due to required config missing~ (omitted: strong defaults mean no config is strictly required)
 
 ## ⚙️ Configuration
@@ -53,7 +53,7 @@ Enhancing configurability, schema validation, and migration.
   - [x] Verify `CONTRIBUTING.md` remains accurate after config updates
 - [x] Support JSONC for config files
 - [ ] Evaluate default role mappings for common project structures
-- [x] Improve config discovery / override logic (🤖?)
+- [x] Improve config discovery / override logic
 - [x] Support `.json` or `.jsonc` extension name, parse both as jsonc.
 
 ## 🪶 Editor Integration
@@ -64,10 +64,10 @@ Features that improve the VS Code user experience.
 - [x] ~Add “Reload Header” command to manually reinsert headers~ (covered by "Update Header")
 - [x] ~Add command to open current config in editor~ (omitted: multiple config sources make "current" ambiguous)
 - [x] Command palette actions for "Insert Header" and "Update Header"
-- [x] ~Context menu integration (🤖?)~ (omitted: command palette is sufficient, avoids crowding context menus)
-- [x] ~Status bar indicator for header presence (🤖?)~ (omitted: unnecessary UX, better served by debug logs)
-- [ ] Inline preview of resolved header template (🤖?)
-- [x] ~VSCode "Quick fixes" for missing or invalid headers (🤖?)~ (omitted: obtrusive UX, use command palette or auto-save instead)
+- [x] ~Context menu integration~ (omitted: command palette is sufficient, avoids crowding context menus)
+- [x] ~Status bar indicator for header presence~ (omitted: unnecessary UX, better served by debug logs)
+- [ ] Inline preview of resolved header template
+- [x] ~VSCode "Quick fixes" for missing or invalid headers~ (omitted: obtrusive UX, use command palette or auto-save instead)
 
 ## 🧪 Testing
 
@@ -75,9 +75,9 @@ Improving reliability and ensuring stability across changes.
 
 - [x] ~Integration tests for `activate()` lifecycle (mock VS Code API)~ (omitted: lifecycle is already covered by E2E tests)
 - [x] End-to-end tests for header insertion on temporary files
-- [x] Snapshot tests for header output (GTP)
-- [x] Unit tests for template and config parsing (🤖?)
-- [ ] Test behavior for renamed or moved files
+- [x] Snapshot tests for header output
+- [x] Unit tests for template and config parsing
+- [x] Test behavior for renamed or moved files
 - [ ] Benchmark timings for various functionality that is repeatable
 
 ## 🚀 Deployment
@@ -89,7 +89,7 @@ Packaging, publishing, and release automation.
 - [ ] Validate VS Code manifest and metadata automatically
 - [ ] Automate changelog generation for releases
 - [ ] Streamline versioning between extension + future CLI
-- [ ] Improve extension activation performance (🤖?)
+- [ ] Improve extension activation performance
 
 ## 🧭 Design & Architecture
 
@@ -108,13 +108,13 @@ Longer-term structure, maintainability, and extensibility.
 
 Uncommitted ideas worth revisiting later.
 
-- [ ] Template presets (e.g., MIT, Apache, BSD) (🤖?)
-- [ ] Visual UI for template editing (🤖?)
+- [ ] Template presets (e.g., MIT, Apache, BSD)
+- [ ] Visual UI for template editing
 - [ ] Multi-language docstring support (JSDoc, Python, etc.)
 - [ ] Optional decorative header styles
 - [ ] Support installation from other package managers (Composer, PyPI, etc.)
   - [ ] Should we support multi-line automatically, or have the person do it manually?
   - [ ] Should they be able to add standard code under their header?
 - [ ] Import/export config from other tools
-- [ ] Optional comment block art / decorative headers (🤖?)
+- [ ] Optional comment block art / decorative headers
 - [ ] AI-assisted header generation (experimental)
