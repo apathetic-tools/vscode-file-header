@@ -52,27 +52,113 @@
     "configuration": {
       "title": "File Header for AI",
       "properties": {
-        "fileHeader.languages": {
+        "fileHeader.autoInsert": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically insert header on save if missing",
+          "scope": "resource"
+        },
+        "fileHeader.autoUpdate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Replace an outdated header path when file moves",
+          "scope": "resource"
+        },
+        "fileHeader.filePathStyle": {
+          "type": "string",
+          "enum": ["filename", "relativePath", "absolutePath"],
+          "default": "relativePath",
+          "description": "What file path form to show in header",
+          "scope": "resource"
+        },
+        "fileHeader.showLanguage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the main language label (from VSCode)",
+          "scope": "resource"
+        },
+        "fileHeader.showFormat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show format label (e.g. \"React\", \"GitHub Issue Template\")",
+          "scope": "resource"
+        },
+        "fileHeader.showRoles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show matching role labels (e.g., \"Page component\")",
+          "scope": "resource"
+        },
+        "fileHeader.filePathTemplate": {
+          "type": "string",
+          "default": "${filePath}",
+          "description": "Template to fill in the file path.",
+          "scope": "resource"
+        },
+        "fileHeader.languageTemplate": {
+          "type": "string",
+          "default": " (${language})",
+          "description": "Template for the language label.",
+          "scope": "resource"
+        },
+        "fileHeader.formatTemplate": {
+          "type": "string",
+          "default": " (${format})",
+          "description": "Template for the format label.",
+          "scope": "resource"
+        },
+        "fileHeader.jointLanguageAndFormatTemplate": {
+          "type": "string",
+          "default": " (${language} — ${format})",
+          "description": "Template for the combined language and format labels.",
+          "scope": "resource"
+        },
+        "fileHeader.contextTemplate": {
+          "type": "string",
+          "default": " [${context}]",
+          "description": "Template for the context label.",
+          "scope": "resource"
+        },
+        "fileHeader.roleTemplate": {
+          "type": "string",
+          "default": " ${role}",
+          "description": "Template for the role label.",
+          "scope": "resource"
+        },
+        "fileHeader.useLanguagesById": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use VS Code language templates (keyed by languageId)",
+          "scope": "resource"
+        },
+        "fileHeader.useLanguagesByPath": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use filepath-based language templates (keyed by glob patterns)",
+          "scope": "resource"
+        },
+        "fileHeader.matchStyle": {
+          "type": "string",
+          "enum": ["filename", "relativePath", "absolutePath"],
+          "default": "relativePath",
+          "description": "Match by this type of path",
+          "scope": "resource"
+        },
+        "fileHeader.languagesById": {
           "type": "object",
-          "default": {
-            "javascript": "// ${relativeFile}",
-            "typescript": "// ${relativeFile}",
-            "python": "# ${relativeFile}",
-            "html": "<!-- ${relativeFile} -->"
-          },
-          "description": "Map of language id to header format. Supports ${fileName} and ${relativeFile}.",
+          "description": "Language header templates keyed by VSCode language ID",
+          "scope": "resource"
+        },
+        "fileHeader.languagesByPath": {
+          "type": "object",
+          "default": {},
+          "description": "Language header templates keyed by filename/glob",
           "scope": "resource"
         },
         "fileHeader.roles": {
           "type": "object",
           "default": {},
           "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
-          "scope": "resource"
-        },
-        "fileHeader.addLanguageLabel": {
-          "type": "boolean",
-          "default": true,
-          "description": "Whether to automatically append a human-readable language label (e.g. '(TypeScript React)').",
           "scope": "resource"
         },
         "fileHeader.ignore": {
