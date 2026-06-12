@@ -29,7 +29,7 @@ _(subject to change)_
 
 Core logic for detecting, generating, and updating headers.
 
-- [ ] Improve template resolution for `${language}`, `${format}`, `${role}`, `${context}`
+- [x] Improve template resolution for `${language}`, `${format}`, `${role}`, `${context}`
 - [x] Handle shebang lines in scripts — insert header after `#!` when present
 - [ ] Handle frontmatter in markdown — insert header after `---` when present
 - [ ] Add optional auto-update on save (`workspace.onDidSaveTextDocument`)
@@ -76,7 +76,7 @@ Improving reliability and ensuring stability across changes.
 - [ ] Integration tests for `activate()` lifecycle (mock VS Code API)
 - [ ] End-to-end tests for header insertion on temporary files
 - [ ] Snapshot tests for header output (GTP?)
-- [ ] Unit tests for template and config parsing (🤖?)
+- [x] Unit tests for template and config parsing (🤖?)
 - [ ] Test behavior for renamed or moved files
 - [ ] Benchmark timings for various functionality that is repeatable
 
