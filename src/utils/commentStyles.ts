@@ -3,13 +3,25 @@ export interface CommentStyle {
 	block: Array<{ start: string; end: string }>;
 }
 
-export const cStyle: CommentStyle = { line: ["//"], block: [{ start: "/*", end: "*/" }] };
+export const cStyle: CommentStyle = {
+	line: ["//"],
+	block: [{ start: "/*", end: "*/" }],
+};
 export const hashStyle: CommentStyle = { line: ["#"], block: [] };
-export const htmlStyle: CommentStyle = { line: [], block: [{ start: "<!--", end: "-->" }] };
-export const sqlStyle: CommentStyle = { line: ["--"], block: [{ start: "/*", end: "*/" }] };
+export const htmlStyle: CommentStyle = {
+	line: [],
+	block: [{ start: "<!--", end: "-->" }],
+};
+export const sqlStyle: CommentStyle = {
+	line: ["--"],
+	block: [{ start: "/*", end: "*/" }],
+};
 export const texStyle: CommentStyle = { line: ["%"], block: [] };
 export const lispStyle: CommentStyle = { line: [";", ";;"], block: [] };
-export const xmlStyle: CommentStyle = { line: [], block: [{ start: "<!--", end: "-->" }] };
+export const xmlStyle: CommentStyle = {
+	line: [],
+	block: [{ start: "<!--", end: "-->" }],
+};
 
 export const languageCommentStyles: Record<string, CommentStyle> = {
 	javascript: cStyle,
@@ -83,7 +95,13 @@ export const languageCommentStyles: Record<string, CommentStyle> = {
 	vb: { line: ["'"], block: [] },
 
 	ocaml: { line: [], block: [{ start: "(*", end: "*)" }] },
-	pascal: { line: [], block: [{ start: "{", end: "}" }, { start: "(*", end: "*)" }] },
+	pascal: {
+		line: [],
+		block: [
+			{ start: "{", end: "}" },
+			{ start: "(*", end: "*)" },
+		],
+	},
 	handlebars: { line: [], block: [{ start: "{{!", end: "}}" }] },
 	razor: { line: [], block: [{ start: "@*", end: "*@" }] },
 	jade: { line: ["//", "//-"], block: [] },

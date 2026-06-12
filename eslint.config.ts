@@ -39,8 +39,7 @@ export default defineConfig([
 		languageOptions: {
 			parser: tseslint.parser,
 			parserOptions: {
-				projectService: process.env.CI ? false : true,
-				project: "./tsconfig.json",
+				projectService: true,
 				tsconfigRootDir: process.cwd(),
 			},
 		},

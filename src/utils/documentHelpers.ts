@@ -49,7 +49,8 @@ export function isCommentLine(line: string, languageId?: string): boolean {
 		// but `isCommentLine` is usually used to check the FIRST line of a comment block.
 		// If it's a doc comment `/**`, it starts with `/*` so it matches the block start.
 		// Wait, some javadoc-style comments start lines with `*`.
-		if (style.block.some((b) => b.start === "/*") && trimmed.startsWith("*")) return true;
+		if (style.block.some((b) => b.start === "/*") && trimmed.startsWith("*"))
+			return true;
 		return false;
 	}
 
@@ -75,7 +76,9 @@ export function stripCommentTokens(text: string, languageId?: string): string {
 				stripped = stripped.substring(b.start.length).trimLeft();
 			}
 			if (stripped.endsWith(b.end)) {
-				stripped = stripped.substring(0, stripped.length - b.end.length).trimRight();
+				stripped = stripped
+					.substring(0, stripped.length - b.end.length)
+					.trimRight();
 			}
 		}
 		// Special case for JSDoc style block comments
@@ -101,7 +104,11 @@ export function stripCommentTokens(text: string, languageId?: string): string {
 /**
  * Gets all lines that make up the comment block starting at `startIndex`.
  */
-export function getCommentBlock(document: vscode.TextDocument, startIndex: number, languageId?: string): string[] {
+export function getCommentBlock(
+	document: vscode.TextDocument,
+	startIndex: number,
+	languageId?: string,
+): string[] {
 	const block: string[] = [];
 	const firstLine = document.lineAt(startIndex).text.trim();
 	block.push(firstLine);
@@ -118,23 +125,38 @@ export function getCommentBlock(document: vscode.TextDocument, startIndex: numbe
 			}
 		}
 	} else {
-		if (firstLine.startsWith("/*")) { inBlockComment = true; blockEndTokens = ["*/"]; }
-		else if (firstLine.startsWith("<!--")) { inBlockComment = true; blockEndTokens = ["-->"]; }
-		else if (firstLine.startsWith("{-")) { inBlockComment = true; blockEndTokens = ["-}"]; }
-		else if (firstLine.startsWith("{{!")) { inBlockComment = true; blockEndTokens = ["}}"]; }
-		else if (firstLine.startsWith("(*")) { inBlockComment = true; blockEndTokens = ["*)"]; }
+		if (firstLine.startsWith("/*")) {
+			inBlockComment = true;
+			blockEndTokens = ["*/"];
+		} else if (firstLine.startsWith("<!--")) {
+			inBlockComment = true;
+			blockEndTokens = ["-->"];
+		} else if (firstLine.startsWith("{-")) {
+			inBlockComment = true;
+			blockEndTokens = ["-}"];
+		} else if (firstLine.startsWith("{{!")) {
+			inBlockComment = true;
+			blockEndTokens = ["}}"];
+		} else if (firstLine.startsWith("(*")) {
+			inBlockComment = true;
+			blockEndTokens = ["*)"];
+		}
 	}
 
 	if (inBlockComment) {
 		// check if the first line already contains the end token
-		if (blockEndTokens.some(token => firstLine.endsWith(token) && firstLine.length > token.length)) {
+		if (
+			blockEndTokens.some(
+				(token) => firstLine.endsWith(token) && firstLine.length > token.length,
+			)
+		) {
 			return block;
 		}
 
 		for (let i = startIndex + 1; i < document.lineCount; i++) {
 			const text = document.lineAt(i).text.trim();
 			block.push(text);
-			if (blockEndTokens.some(token => text.includes(token))) {
+			if (blockEndTokens.some((token) => text.includes(token))) {
 				break;
 			}
 		}

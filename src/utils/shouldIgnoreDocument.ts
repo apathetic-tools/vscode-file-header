@@ -12,7 +12,9 @@ export async function shouldIgnoreDocument(
 		// Match common comment markers
 		const isComment = isCommentLine(firstLine, doc.languageId);
 		const skipWords = config.skipWords || [];
-		const hasGeneratedKeyword = skipWords.some((word) => firstLine.includes(word.toLowerCase()));
+		const hasGeneratedKeyword = skipWords.some((word) =>
+			firstLine.includes(word.toLowerCase()),
+		);
 
 		if (isComment && hasGeneratedKeyword) {
 			return true;
@@ -47,7 +49,7 @@ export async function shouldIgnoreDocument(
 		if (gitIg.ignores(relativePath)) {
 			return true;
 		}
-	} catch (e) {
+	} catch {
 		// File doesn't exist or can't be read, safely ignore
 	}
 

@@ -4,8 +4,8 @@
 
 set -e  # stop on first failure
 
-echo "🔍 Type checking..."
-pnpm lint:tsc
+echo "🔍 Running code checks (formatting, linting, types)..."
+pnpm check
 
 echo "🧪 Running tests..."
 pnpm test

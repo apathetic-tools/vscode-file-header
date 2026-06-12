@@ -52,9 +52,13 @@ export function hasValidHeader(
 	);
 
 	// Get the entire comment block to search for the path
-	const commentBlock = getCommentBlock(document, firstNonBlankIndex, document.languageId);
+	const commentBlock = getCommentBlock(
+		document,
+		firstNonBlankIndex,
+		document.languageId,
+	);
 
-	return commentBlock.some(line => pattern.test(line));
+	return commentBlock.some((line) => pattern.test(line));
 }
 
 /**
@@ -85,19 +89,23 @@ export function findOutdatedHeaderLine(
 		return undefined;
 	}
 
-	const commentBlock = getCommentBlock(document, firstNonBlankIndex, document.languageId);
+	const commentBlock = getCommentBlock(
+		document,
+		firstNonBlankIndex,
+		document.languageId,
+	);
 
 	for (let idx = 0; idx < commentBlock.length; idx++) {
 		const text = commentBlock[idx];
 		// Strip common comment tokens
-		let stripped = stripCommentTokens(text, document.languageId);
+		const stripped = stripCommentTokens(text, document.languageId);
 
 		// Grab the first word (likely the file path)
 		const firstWord = stripped.split(/\s+/)[0];
 		if (!firstWord) continue;
 
 		// If it looks like a path (contains a slash or ends in an extension), it's probably our old header
-		if (/[\/\\]/.test(firstWord) || /\.\w+$/.test(firstWord)) {
+		if (/[/\\]/.test(firstWord) || /\.\w+$/.test(firstWord)) {
 			// Return the line index in the document
 			return firstNonBlankIndex + idx;
 		}

@@ -9,14 +9,19 @@ describe("shouldIgnoreDocument()", () => {
 		// Setup default mocks
 		vi.mocked(vscode.workspace.getWorkspaceFolder).mockReturnValue({
 			uri: { fsPath: "/workspace", scheme: "file" },
-		} as any);
-		vi.mocked(vscode.workspace.asRelativePath).mockImplementation((uri: any) =>
-			uri.fsPath.replace("/workspace/", ""),
+		} as unknown as vscode.WorkspaceFolder);
+		vi.mocked(vscode.workspace.asRelativePath).mockImplementation(
+			(uri: unknown) => (uri as vscode.Uri).fsPath.replace("/workspace/", ""),
 		);
-		vi.mocked(vscode.Uri.joinPath).mockImplementation((...args) => ({
-			fsPath: args.map((a) => (typeof a === "string" ? a : a.fsPath)).join("/"),
-			scheme: "file",
-		}));
+		vi.mocked(vscode.Uri.joinPath).mockImplementation(
+			(...args) =>
+				({
+					fsPath: args
+						.map((a) => (typeof a === "string" ? a : a.fsPath))
+						.join("/"),
+					scheme: "file",
+				}) as unknown as vscode.Uri,
+		);
 	});
 
 	describe("generated file detection", () => {
