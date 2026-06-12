@@ -2,5 +2,4 @@
 
 - Never ask to stage or commit files until I explicitly say "commit". If I ask for something else first, wait until I ask again. Always present the commit action as a single transaction line (e.g. git add ... && git commit -m "...").
 
-
 - **Package Manager**: NEVER use `npm`, `npx`, `yarn`, or `bun`. ALWAYS use `pnpm` for all dependency management and script execution.
