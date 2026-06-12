@@ -1,9 +1,7 @@
 // .vscode/extensions.json
 {
   "recommendations": [
-    "ms-vscode-remote.remote-wsl",
     "editorconfig.editorconfig",
-    "ms-vscode-remote.remote-wsl",
     "bierner.github-markdown-preview",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
