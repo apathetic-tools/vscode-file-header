@@ -15,14 +15,7 @@
 Adds a **single-line file-header comment** containing the _relative filepath_ and an optional _role label_ at the top of your files.  
 Perfect for developers who often paste files into chat — whether to **AI assistants** or **other humans**.
 
-## Out of the box
 
-This extension by default will:
-
-- **Auto-insert** a file header at the top of any file you save if it is missing one.
-- **Auto-update** an existing file header on save if you rename or move the file, keeping the path accurate for AI context.
-- Safely skip updating custom manual comments, copyrights, or docstrings.
-- Skips shebang in scripts and frontmatter in markdown.
 
 ## Features
 
@@ -52,14 +45,21 @@ pnpm vsce package
 code --install-extension vscode-file-header-0.0.1.vsix
 ```
 
-## Configuration
+## Configuration & Defaults
 
-Zero-configuration by default — sensible, non-destructive behavior out of the box.
-Configure only if you want to modify defaults or extend functionality.
+This extension is strictly **zero-configuration** by default. We provide sensible, non-destructive behavior out of the box so you don't have to configure anything. 
 
-Settings can be configured through the native VS Code Settings menu (`.vscode/settings.json`) or via a dedicated `.fileheader.json` config file.
+Here is what you can expect by default:
 
-📖 **[Read the Full Configuration Guide](docs/configuration.md)** for detailed schemas, file precedence rules, and examples.
+- **`autoInsert` (true):** Automatically inserts a header on save if it's missing.
+- **`autoUpdate` (true):** Updates the header's file path if you rename or move the file.
+- **`filePathStyle` ("relativePath"):** Displays the path relative to your workspace root.
+- **`showLanguage` (true):** Includes the VS Code language identifier in the header.
+- **Smart Skips:** The extension automatically avoids inserting headers on files that already start with `auto`, `generated`, `copyright`, or `license` comments.
+
+If you wish to change these defaults, define specific include/exclude rules, or add custom "role" labels (e.g., `(React component)`):
+
+📖 **[Read the Configuration Guide](docs/configuration.md)** for detailed settings, schemas, and examples.
 
 ## Roadmap
 

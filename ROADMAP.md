@@ -49,8 +49,8 @@ Enhancing configurability, schema validation, and migration.
 - [x] Implement full config schema support
 - [x] Expose `fileHeader.languages` in VS Code settings (`contributes.configuration`)
 - [x] Update `package.json` to include all `fileHeader.*` configuration keys
-- [ ] Update usage documentation in README (especially configuration section)
-  - [ ] Verify `CONTRIBUTING.md` remains accurate after config updates
+- [x] Update usage documentation in README (especially configuration section)
+  - [x] Verify `CONTRIBUTING.md` remains accurate after config updates
 - [x] Support JSONC for config files
 - [ ] Evaluate default role mappings for common project structures
 - [x] Improve config discovery / override logic (🤖?)
