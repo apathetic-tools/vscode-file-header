@@ -1,7 +1,7 @@
 {
   "name": "vscode-file-header",
   "displayName": "File Header for AI",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Lightweight file headers for AI chats and humans.",
   "keywords": [
     "file header",

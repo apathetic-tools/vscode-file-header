@@ -2,10 +2,10 @@
 
 # File Header for AI
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic.file-header-for-ai?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-for-ai)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic.file-header-for-ai?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-for-ai)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header)
 [![CI](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
 📘 **[Roadmap](./ROADMAP.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header/releases)**
 
@@ -35,13 +35,7 @@ Perfect for developers who often paste files into chat — whether to **AI assis
 
 ## Installation
 
-Once published, install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/)
-Or, for local builds:
-
-```sh
-pnpm vsce package
-code --install-extension vscode-file-header-0.0.1.vsix
-```
+Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header) or the [Open VSX Registry](https://open-vsx.org/extension/apathetic/vscode-file-header).
 
 ## Configuration & Defaults
 
@@ -53,7 +47,8 @@ Here is what you can expect by default:
 - **`autoUpdate` (true):** Updates the header's file path if you rename or move the file.
 - **`filePathStyle` ("relativePath"):** Displays the path relative to your workspace root.
 - **`showLanguage` (true):** Includes the VS Code language identifier in the header.
-- **Smart Skips:** The extension automatically avoids inserting headers on files that already start with `auto`, `generated`, `copyright`, or `license` comments.
+- **Smart Skips:** The extension automatically avoids inserting headers on files that already start with `auto` or `generated` comments.
+- **Smart Placement:** The extension automatically inserts headers _after_ existing `copyright` or `license` comment blocks, rather than overwriting them.
 
 If you wish to change these defaults, define specific include/exclude rules, or add custom "role" labels (e.g., `(React component)`):
 
@@ -73,4 +68,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup and development instructions.
 
 [MIT](LICENSE) © 2025 Apathetic Tools
 
-> ✨ _ChatGPT was used to help draft language, formatting, and code — plus we just love em dashes._
+> ✨ _AI tools were used to help draft language, formatting, and code — plus we just love em dashes._
