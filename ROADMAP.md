@@ -78,7 +78,6 @@ Improving reliability and ensuring stability across changes.
 - [x] Snapshot tests for header output
 - [x] Unit tests for template and config parsing
 - [x] Test behavior for renamed or moved files
-- [ ] Benchmark timings for various functionality that is repeatable
 
 ## 🚀 Deployment
 
@@ -98,6 +97,9 @@ Longer-term structure, maintainability, and extensibility.
 - [ ] Extract `file-header` as a standalone NPM library
   - [ ] Share logic between extension and CLI
 - [ ] Create a lightweight CLI (`npx file-header`) for bulk updates
+  - [ ] Implement benchmarking suite to measure whole-codebase processing times
+  - [ ] Run benchmarks in CI to catch performance regressions
+  - [ ] Compare current code execution time against the previous commit's performance to provide a reliable delta
 - [ ] Add type-safe plugin interface for custom header rules
 - [ ] Evaluate rewrite in Go for speed and portability (future exploration)
 - [ ] Improve internal naming consistency
