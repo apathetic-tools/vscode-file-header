@@ -1,0 +1,296 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "File Header Configuration",
+  "type": "object",
+  "properties": {
+    "autoInsert": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically insert header on save if missing",
+      "scope": "resource"
+    },
+    "fileHeader.autoInsert": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically insert header on save if missing",
+      "scope": "resource"
+    },
+    "autoUpdate": {
+      "type": "boolean",
+      "default": true,
+      "description": "Replace an outdated header path when file moves",
+      "scope": "resource"
+    },
+    "fileHeader.autoUpdate": {
+      "type": "boolean",
+      "default": true,
+      "description": "Replace an outdated header path when file moves",
+      "scope": "resource"
+    },
+    "filePathStyle": {
+      "type": "string",
+      "enum": [
+        "filename",
+        "relativePath",
+        "absolutePath"
+      ],
+      "default": "relativePath",
+      "description": "What file path form to show in header",
+      "scope": "resource"
+    },
+    "fileHeader.filePathStyle": {
+      "type": "string",
+      "enum": [
+        "filename",
+        "relativePath",
+        "absolutePath"
+      ],
+      "default": "relativePath",
+      "description": "What file path form to show in header",
+      "scope": "resource"
+    },
+    "showLanguage": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show the main language label (from VSCode)",
+      "scope": "resource"
+    },
+    "fileHeader.showLanguage": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show the main language label (from VSCode)",
+      "scope": "resource"
+    },
+    "showFormat": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show format label (e.g. \"React\", \"GitHub Issue Template\")",
+      "scope": "resource"
+    },
+    "fileHeader.showFormat": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show format label (e.g. \"React\", \"GitHub Issue Template\")",
+      "scope": "resource"
+    },
+    "showRoles": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show matching role labels (e.g., \"Page component\")",
+      "scope": "resource"
+    },
+    "fileHeader.showRoles": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show matching role labels (e.g., \"Page component\")",
+      "scope": "resource"
+    },
+    "filePathTemplate": {
+      "type": "string",
+      "default": "${filePath}",
+      "description": "Template to fill in the file path.",
+      "scope": "resource"
+    },
+    "fileHeader.filePathTemplate": {
+      "type": "string",
+      "default": "${filePath}",
+      "description": "Template to fill in the file path.",
+      "scope": "resource"
+    },
+    "languageTemplate": {
+      "type": "string",
+      "default": " (${language})",
+      "description": "Template for the language label.",
+      "scope": "resource"
+    },
+    "fileHeader.languageTemplate": {
+      "type": "string",
+      "default": " (${language})",
+      "description": "Template for the language label.",
+      "scope": "resource"
+    },
+    "formatTemplate": {
+      "type": "string",
+      "default": " (${format})",
+      "description": "Template for the format label.",
+      "scope": "resource"
+    },
+    "fileHeader.formatTemplate": {
+      "type": "string",
+      "default": " (${format})",
+      "description": "Template for the format label.",
+      "scope": "resource"
+    },
+    "jointLanguageAndFormatTemplate": {
+      "type": "string",
+      "default": " (${language} — ${format})",
+      "description": "Template for the combined language and format labels.",
+      "scope": "resource"
+    },
+    "fileHeader.jointLanguageAndFormatTemplate": {
+      "type": "string",
+      "default": " (${language} — ${format})",
+      "description": "Template for the combined language and format labels.",
+      "scope": "resource"
+    },
+    "contextTemplate": {
+      "type": "string",
+      "default": " [${context}]",
+      "description": "Template for the context label.",
+      "scope": "resource"
+    },
+    "fileHeader.contextTemplate": {
+      "type": "string",
+      "default": " [${context}]",
+      "description": "Template for the context label.",
+      "scope": "resource"
+    },
+    "roleTemplate": {
+      "type": "string",
+      "default": " ${role}",
+      "description": "Template for the role label.",
+      "scope": "resource"
+    },
+    "fileHeader.roleTemplate": {
+      "type": "string",
+      "default": " ${role}",
+      "description": "Template for the role label.",
+      "scope": "resource"
+    },
+    "useLanguagesById": {
+      "type": "boolean",
+      "default": true,
+      "description": "Use VS Code language templates (keyed by languageId)",
+      "scope": "resource"
+    },
+    "fileHeader.useLanguagesById": {
+      "type": "boolean",
+      "default": true,
+      "description": "Use VS Code language templates (keyed by languageId)",
+      "scope": "resource"
+    },
+    "useLanguagesByPath": {
+      "type": "boolean",
+      "default": true,
+      "description": "Use filepath-based language templates (keyed by glob patterns)",
+      "scope": "resource"
+    },
+    "fileHeader.useLanguagesByPath": {
+      "type": "boolean",
+      "default": true,
+      "description": "Use filepath-based language templates (keyed by glob patterns)",
+      "scope": "resource"
+    },
+    "matchStyle": {
+      "type": "string",
+      "enum": [
+        "filename",
+        "relativePath",
+        "absolutePath"
+      ],
+      "default": "relativePath",
+      "description": "Match by this type of path",
+      "scope": "resource"
+    },
+    "fileHeader.matchStyle": {
+      "type": "string",
+      "enum": [
+        "filename",
+        "relativePath",
+        "absolutePath"
+      ],
+      "default": "relativePath",
+      "description": "Match by this type of path",
+      "scope": "resource"
+    },
+    "languagesById": {
+      "type": "object",
+      "description": "Language header templates keyed by VSCode language ID",
+      "scope": "resource"
+    },
+    "fileHeader.languagesById": {
+      "type": "object",
+      "description": "Language header templates keyed by VSCode language ID",
+      "scope": "resource"
+    },
+    "languagesByPath": {
+      "type": "object",
+      "default": {},
+      "description": "Language header templates keyed by filename/glob",
+      "scope": "resource"
+    },
+    "fileHeader.languagesByPath": {
+      "type": "object",
+      "default": {},
+      "description": "Language header templates keyed by filename/glob",
+      "scope": "resource"
+    },
+    "roles": {
+      "type": "object",
+      "default": {},
+      "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
+      "scope": "resource"
+    },
+    "fileHeader.roles": {
+      "type": "object",
+      "default": {},
+      "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
+      "scope": "resource"
+    },
+    "ignore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Array of glob patterns or gitignore-style strings to ignore when inserting headers. Also respects `.gitignore` natively.",
+      "scope": "resource"
+    },
+    "fileHeader.ignore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Array of glob patterns or gitignore-style strings to ignore when inserting headers. Also respects `.gitignore` natively.",
+      "scope": "resource"
+    },
+    "skipWords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "auto",
+        "automatically",
+        "generated",
+        "copyright",
+        "(c)",
+        "©",
+        "license",
+        "licensed"
+      ],
+      "description": "Array of words. If the first line of a file is a comment and contains any of these words, the file will be ignored.",
+      "scope": "resource"
+    },
+    "fileHeader.skipWords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "auto",
+        "automatically",
+        "generated",
+        "copyright",
+        "(c)",
+        "©",
+        "license",
+        "licensed"
+      ],
+      "description": "Array of words. If the first line of a file is a comment and contains any of these words, the file will be ignored.",
+      "scope": "resource"
+    }
+  },
+  "additionalProperties": true
+}

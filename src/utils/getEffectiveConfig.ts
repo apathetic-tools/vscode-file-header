@@ -1,34 +1,76 @@
 // src/utils/getEffectiveConfig.ts
 import * as vscode from "vscode";
+import { parse } from "jsonc-parser";
 import { type FileHeaderConfig } from "../config";
 import { mergeConfig } from "./mergeConfig";
 
-export function getEffectiveConfig(
+export async function getEffectiveConfig(
 	defaultConfig: FileHeaderConfig,
 	vsConfig: vscode.WorkspaceConfiguration,
-): FileHeaderConfig {
-	const userConfig: Partial<FileHeaderConfig> = {
-		autoInsert: vsConfig.get("autoInsert"),
-		autoUpdate: vsConfig.get("autoUpdate"),
-		filePathStyle: vsConfig.get("filePathStyle"),
-		showLanguage: vsConfig.get("showLanguage"),
-		showFormat: vsConfig.get("showFormat"),
-		showRoles: vsConfig.get("showRoles"),
-		filePathTemplate: vsConfig.get("filePathTemplate"),
-		languageTemplate: vsConfig.get("languageTemplate"),
-		formatTemplate: vsConfig.get("formatTemplate"),
-		jointLanguageAndFormatTemplate: vsConfig.get("jointLanguageAndFormatTemplate"),
-		contextTemplate: vsConfig.get("contextTemplate"),
-		roleTemplate: vsConfig.get("roleTemplate"),
-		useLanguagesById: vsConfig.get("useLanguagesById"),
-		useLanguagesByPath: vsConfig.get("useLanguagesByPath"),
-		matchStyle: vsConfig.get("matchStyle"),
-		languagesById: vsConfig.get("languagesById"),
-		languagesByPath: vsConfig.get("languagesByPath"),
-		roles: vsConfig.get("roles"),
-		ignore: vsConfig.get("ignore"),
-		skipWords: vsConfig.get("skipWords"),
-	};
+	docUri: vscode.Uri,
+): Promise<FileHeaderConfig> {
+	let fileConfig: Partial<FileHeaderConfig> = {};
 
-	return mergeConfig(defaultConfig, userConfig);
+	const workspaceFolder = vscode.workspace.getWorkspaceFolder(docUri);
+	if (workspaceFolder) {
+		for (const filename of [".fileheader.jsonc", ".fileheader.json"]) {
+			const fileUri = vscode.Uri.joinPath(workspaceFolder.uri, filename);
+			try {
+				const data = await vscode.workspace.fs.readFile(fileUri);
+				const text = Buffer.from(data).toString("utf8");
+				const parsed = parse(text);
+				if (parsed && typeof parsed === "object") {
+					for (const key of Object.keys(parsed)) {
+						if (key.startsWith("fileHeader.")) {
+							parsed[key.slice(11)] = parsed[key];
+							delete parsed[key];
+						}
+					}
+					fileConfig = parsed;
+					break;
+				}
+			} catch {
+				// Ignore file not found or parse errors
+			}
+		}
+	}
+
+	const userConfig: Partial<FileHeaderConfig> = {};
+	const keys: (keyof FileHeaderConfig)[] = [
+		"autoInsert",
+		"autoUpdate",
+		"filePathStyle",
+		"showLanguage",
+		"showFormat",
+		"showRoles",
+		"filePathTemplate",
+		"languageTemplate",
+		"formatTemplate",
+		"jointLanguageAndFormatTemplate",
+		"contextTemplate",
+		"roleTemplate",
+		"useLanguagesById",
+		"useLanguagesByPath",
+		"matchStyle",
+		"languagesById",
+		"languagesByPath",
+		"roles",
+		"ignore",
+		"skipWords",
+	];
+
+	for (const key of keys) {
+		const inspect = vsConfig.inspect(key);
+		if (
+			inspect &&
+			(inspect.globalValue !== undefined ||
+				inspect.workspaceValue !== undefined ||
+				inspect.workspaceFolderValue !== undefined)
+		) {
+			(userConfig as Record<string, unknown>)[key] = vsConfig.get(key);
+		}
+	}
+
+	const mergedWithFile = mergeConfig(defaultConfig, fileConfig);
+	return mergeConfig(mergedWithFile, userConfig);
 }

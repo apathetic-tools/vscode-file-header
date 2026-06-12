@@ -49,6 +49,16 @@
         "title": "File Header: Update Header"
       }
     ],
+    "jsonValidation": [
+      {
+        "fileMatch": ".fileheader.json",
+        "url": "./fileheader.schema.json"
+      },
+      {
+        "fileMatch": ".fileheader.jsonc",
+        "url": "./fileheader.schema.json"
+      }
+    ],
     "configuration": {
       "title": "File Header for AI",
       "properties": {
@@ -66,7 +76,11 @@
         },
         "fileHeader.filePathStyle": {
           "type": "string",
-          "enum": ["filename", "relativePath", "absolutePath"],
+          "enum": [
+            "filename",
+            "relativePath",
+            "absolutePath"
+          ],
           "default": "relativePath",
           "description": "What file path form to show in header",
           "scope": "resource"
@@ -139,7 +153,11 @@
         },
         "fileHeader.matchStyle": {
           "type": "string",
-          "enum": ["filename", "relativePath", "absolutePath"],
+          "enum": [
+            "filename",
+            "relativePath",
+            "absolutePath"
+          ],
           "default": "relativePath",
           "description": "Match by this type of path",
           "scope": "resource"
@@ -217,6 +235,7 @@
   },
   "dependencies": {
     "ignore": "^7.0.5",
+    "jsonc-parser": "^3.3.1",
     "minimatch": "^10.2.5"
   },
   "devDependencies": {

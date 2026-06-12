@@ -57,7 +57,9 @@ code --install-extension vscode-file-header-0.0.1.vsix
 Zero-configuration by default — sensible, non-destructive behavior out of the box.
 Configure only if you want to modify defaults or extend functionality.
 
-Settings can be added in `.vscode/settings.json`, `.code-workspace`, or a local `.fileheader.json` config:
+Settings can be configured through the native VS Code Settings menu (`.vscode/settings.json`) or via a dedicated `.fileheader.json` config file.
+
+📖 **[Read the Full Configuration Guide](docs/configuration.md)** for detailed schemas, file precedence rules, and examples.
 
 ## Roadmap
 

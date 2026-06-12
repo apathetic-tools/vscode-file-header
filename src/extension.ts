@@ -21,8 +21,8 @@ export function activate(context: vscode.ExtensionContext) {
 			const doc = editor.document;
 			if (doc.isUntitled || doc.lineCount === 0) return;
 
-			const vsConfig = vscode.workspace.getConfiguration("fileHeader");
-			const config = getEffectiveConfig(defaultConfig, vsConfig);
+			const vsConfig = vscode.workspace.getConfiguration("fileHeader", doc.uri);
+			const config = await getEffectiveConfig(defaultConfig, vsConfig, doc.uri);
 
 			if (await shouldIgnoreDocument(doc, config)) {
 				vscode.window.showInformationMessage(
@@ -63,8 +63,8 @@ export function activate(context: vscode.ExtensionContext) {
 			const doc = editor.document;
 			if (doc.isUntitled || doc.lineCount === 0) return;
 
-			const vsConfig = vscode.workspace.getConfiguration("fileHeader");
-			const config = getEffectiveConfig(defaultConfig, vsConfig);
+			const vsConfig = vscode.workspace.getConfiguration("fileHeader", doc.uri);
+			const config = await getEffectiveConfig(defaultConfig, vsConfig, doc.uri);
 
 			if (await shouldIgnoreDocument(doc, config)) {
 				vscode.window.showInformationMessage(
@@ -96,11 +96,11 @@ export function activate(context: vscode.ExtensionContext) {
 		const doc = event.document;
 		if (doc.isUntitled || doc.lineCount === 0) return;
 
-		const vsConfig = vscode.workspace.getConfiguration("fileHeader");
-		const config = getEffectiveConfig(defaultConfig, vsConfig);
+		const vsConfig = vscode.workspace.getConfiguration("fileHeader", doc.uri);
 
 		event.waitUntil(
 			(async () => {
+				const config = await getEffectiveConfig(defaultConfig, vsConfig, doc.uri);
 				if (await shouldIgnoreDocument(doc, config)) {
 					return [];
 				}

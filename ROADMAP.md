@@ -51,10 +51,10 @@ Enhancing configurability, schema validation, and migration.
 - [x] Update `package.json` to include all `fileHeader.*` configuration keys
 - [ ] Update usage documentation in README (especially configuration section)
   - [ ] Verify `CONTRIBUTING.md` remains accurate after config updates
-- [ ] Support JSONC for config files
+- [x] Support JSONC for config files
 - [ ] Evaluate default role mappings for common project structures
-- [ ] Improve config discovery / override logic (🤖?)
-- [ ] Support `.json` or `.jsonc` extension name, parse both as jsonc.
+- [x] Improve config discovery / override logic (🤖?)
+- [x] Support `.json` or `.jsonc` extension name, parse both as jsonc.
 
 ## 🪶 Editor Integration
 

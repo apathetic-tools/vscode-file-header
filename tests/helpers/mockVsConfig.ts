@@ -14,7 +14,12 @@ export function mockVsConfig(
 	return {
 		get: (key: string) => settings[key],
 		has: (key: string) => Object.prototype.hasOwnProperty.call(settings, key),
-		inspect: () => undefined,
+		inspect: (key: string) => {
+			if (Object.prototype.hasOwnProperty.call(settings, key)) {
+				return { globalValue: settings[key] };
+			}
+			return undefined;
+		},
 		update: async () => {},
-	} satisfies vscode.WorkspaceConfiguration;
+	} as any;
 }
