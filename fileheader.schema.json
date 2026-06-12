@@ -190,36 +190,1018 @@
     "languagesById": {
       "type": "object",
       "description": "Language header templates keyed by VSCode language ID",
-      "scope": "resource"
+      "scope": "resource",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "headerTemplate": {
+            "type": "string"
+          },
+          "matchStyle": {
+            "type": "string",
+            "enum": ["filename", "relativePath", "absolutePath"]
+          },
+          "language": {
+            "type": "string"
+          },
+          "languageTemplate": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "formatTemplate": {
+            "type": "string"
+          },
+          "jointLanguageAndFormatTemplate": {
+            "type": "string"
+          },
+          "docs": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "note": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["enabled", "disabled", "fallback"]
+          },
+          "fileMatch": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "matchStyle": {
+                    "type": "string",
+                    "enum": ["filename", "relativePath", "absolutePath"]
+                  },
+                  "glob": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "matchStyle": {
+                              "type": "string",
+                              "enum": [
+                                "filename",
+                                "relativePath",
+                                "absolutePath"
+                              ]
+                            },
+                            "glob": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "required": ["glob"]
+                        }
+                      }
+                    ]
+                  },
+                  "language": {
+                    "type": "string"
+                  },
+                  "languageTemplate": {
+                    "type": "string"
+                  },
+                  "format": {
+                    "type": "string"
+                  },
+                  "formatTemplate": {
+                    "type": "string"
+                  },
+                  "jointLanguageAndFormatTemplate": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "contextTemplate": {
+                    "type": "string"
+                  }
+                },
+                "required": ["glob"]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "matchStyle": {
+                      "type": "string",
+                      "enum": ["filename", "relativePath", "absolutePath"]
+                    },
+                    "glob": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "matchStyle": {
+                                "type": "string",
+                                "enum": [
+                                  "filename",
+                                  "relativePath",
+                                  "absolutePath"
+                                ]
+                              },
+                              "glob": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "required": ["glob"]
+                          }
+                        }
+                      ]
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "languageTemplate": {
+                      "type": "string"
+                    },
+                    "format": {
+                      "type": "string"
+                    },
+                    "formatTemplate": {
+                      "type": "string"
+                    },
+                    "jointLanguageAndFormatTemplate": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "string"
+                    },
+                    "contextTemplate": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["glob"]
+                }
+              }
+            ]
+          }
+        },
+        "required": ["headerTemplate"]
+      }
     },
     "fileHeader.languagesById": {
       "type": "object",
       "description": "Language header templates keyed by VSCode language ID",
-      "scope": "resource"
+      "scope": "resource",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "headerTemplate": {
+            "type": "string"
+          },
+          "matchStyle": {
+            "type": "string",
+            "enum": ["filename", "relativePath", "absolutePath"]
+          },
+          "language": {
+            "type": "string"
+          },
+          "languageTemplate": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "formatTemplate": {
+            "type": "string"
+          },
+          "jointLanguageAndFormatTemplate": {
+            "type": "string"
+          },
+          "docs": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "note": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["enabled", "disabled", "fallback"]
+          },
+          "fileMatch": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "matchStyle": {
+                    "type": "string",
+                    "enum": ["filename", "relativePath", "absolutePath"]
+                  },
+                  "glob": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "matchStyle": {
+                              "type": "string",
+                              "enum": [
+                                "filename",
+                                "relativePath",
+                                "absolutePath"
+                              ]
+                            },
+                            "glob": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "required": ["glob"]
+                        }
+                      }
+                    ]
+                  },
+                  "language": {
+                    "type": "string"
+                  },
+                  "languageTemplate": {
+                    "type": "string"
+                  },
+                  "format": {
+                    "type": "string"
+                  },
+                  "formatTemplate": {
+                    "type": "string"
+                  },
+                  "jointLanguageAndFormatTemplate": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "contextTemplate": {
+                    "type": "string"
+                  }
+                },
+                "required": ["glob"]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "matchStyle": {
+                      "type": "string",
+                      "enum": ["filename", "relativePath", "absolutePath"]
+                    },
+                    "glob": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "matchStyle": {
+                                "type": "string",
+                                "enum": [
+                                  "filename",
+                                  "relativePath",
+                                  "absolutePath"
+                                ]
+                              },
+                              "glob": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "required": ["glob"]
+                          }
+                        }
+                      ]
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "languageTemplate": {
+                      "type": "string"
+                    },
+                    "format": {
+                      "type": "string"
+                    },
+                    "formatTemplate": {
+                      "type": "string"
+                    },
+                    "jointLanguageAndFormatTemplate": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "string"
+                    },
+                    "contextTemplate": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["glob"]
+                }
+              }
+            ]
+          }
+        },
+        "required": ["headerTemplate"]
+      }
     },
     "languagesByPath": {
       "type": "object",
       "default": {},
       "description": "Language header templates keyed by filename/glob",
-      "scope": "resource"
+      "scope": "resource",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "headerTemplate": {
+            "type": "string"
+          },
+          "matchStyle": {
+            "type": "string",
+            "enum": ["filename", "relativePath", "absolutePath"]
+          },
+          "language": {
+            "type": "string"
+          },
+          "languageTemplate": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "formatTemplate": {
+            "type": "string"
+          },
+          "jointLanguageAndFormatTemplate": {
+            "type": "string"
+          },
+          "docs": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "note": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["enabled", "disabled"]
+          },
+          "fileMatch": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "matchStyle": {
+                    "type": "string",
+                    "enum": ["filename", "relativePath", "absolutePath"]
+                  },
+                  "glob": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "matchStyle": {
+                              "type": "string",
+                              "enum": [
+                                "filename",
+                                "relativePath",
+                                "absolutePath"
+                              ]
+                            },
+                            "glob": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "required": ["glob"]
+                        }
+                      }
+                    ]
+                  },
+                  "language": {
+                    "type": "string"
+                  },
+                  "languageTemplate": {
+                    "type": "string"
+                  },
+                  "format": {
+                    "type": "string"
+                  },
+                  "formatTemplate": {
+                    "type": "string"
+                  },
+                  "jointLanguageAndFormatTemplate": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "contextTemplate": {
+                    "type": "string"
+                  }
+                },
+                "required": ["glob"]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "matchStyle": {
+                      "type": "string",
+                      "enum": ["filename", "relativePath", "absolutePath"]
+                    },
+                    "glob": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "matchStyle": {
+                                "type": "string",
+                                "enum": [
+                                  "filename",
+                                  "relativePath",
+                                  "absolutePath"
+                                ]
+                              },
+                              "glob": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "required": ["glob"]
+                          }
+                        }
+                      ]
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "languageTemplate": {
+                      "type": "string"
+                    },
+                    "format": {
+                      "type": "string"
+                    },
+                    "formatTemplate": {
+                      "type": "string"
+                    },
+                    "jointLanguageAndFormatTemplate": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "string"
+                    },
+                    "contextTemplate": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["glob"]
+                }
+              }
+            ]
+          }
+        },
+        "required": ["headerTemplate", "fileMatch"]
+      }
     },
     "fileHeader.languagesByPath": {
       "type": "object",
       "default": {},
       "description": "Language header templates keyed by filename/glob",
-      "scope": "resource"
+      "scope": "resource",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "headerTemplate": {
+            "type": "string"
+          },
+          "matchStyle": {
+            "type": "string",
+            "enum": ["filename", "relativePath", "absolutePath"]
+          },
+          "language": {
+            "type": "string"
+          },
+          "languageTemplate": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "formatTemplate": {
+            "type": "string"
+          },
+          "jointLanguageAndFormatTemplate": {
+            "type": "string"
+          },
+          "docs": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "note": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["enabled", "disabled"]
+          },
+          "fileMatch": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "matchStyle": {
+                    "type": "string",
+                    "enum": ["filename", "relativePath", "absolutePath"]
+                  },
+                  "glob": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "matchStyle": {
+                              "type": "string",
+                              "enum": [
+                                "filename",
+                                "relativePath",
+                                "absolutePath"
+                              ]
+                            },
+                            "glob": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "required": ["glob"]
+                        }
+                      }
+                    ]
+                  },
+                  "language": {
+                    "type": "string"
+                  },
+                  "languageTemplate": {
+                    "type": "string"
+                  },
+                  "format": {
+                    "type": "string"
+                  },
+                  "formatTemplate": {
+                    "type": "string"
+                  },
+                  "jointLanguageAndFormatTemplate": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "contextTemplate": {
+                    "type": "string"
+                  }
+                },
+                "required": ["glob"]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "matchStyle": {
+                      "type": "string",
+                      "enum": ["filename", "relativePath", "absolutePath"]
+                    },
+                    "glob": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "matchStyle": {
+                                "type": "string",
+                                "enum": [
+                                  "filename",
+                                  "relativePath",
+                                  "absolutePath"
+                                ]
+                              },
+                              "glob": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "required": ["glob"]
+                          }
+                        }
+                      ]
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "languageTemplate": {
+                      "type": "string"
+                    },
+                    "format": {
+                      "type": "string"
+                    },
+                    "formatTemplate": {
+                      "type": "string"
+                    },
+                    "jointLanguageAndFormatTemplate": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "string"
+                    },
+                    "contextTemplate": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["glob"]
+                }
+              }
+            ]
+          }
+        },
+        "required": ["headerTemplate", "fileMatch"]
+      }
     },
     "roles": {
       "type": "object",
       "default": {},
       "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
-      "scope": "resource"
+      "scope": "resource",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": ["enabled", "disabled"]
+          },
+          "matchStyle": {
+            "type": "string",
+            "enum": ["filename", "relativePath", "absolutePath"]
+          },
+          "glob": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "matchStyle": {
+                      "type": "string",
+                      "enum": ["filename", "relativePath", "absolutePath"]
+                    },
+                    "glob": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": ["glob"]
+                }
+              }
+            ]
+          },
+          "role": {
+            "type": "string"
+          },
+          "roleTemplate": {
+            "type": "string"
+          }
+        },
+        "required": ["glob", "role"]
+      }
     },
     "fileHeader.roles": {
       "type": "object",
       "default": {},
       "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
-      "scope": "resource"
+      "scope": "resource",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": ["enabled", "disabled"]
+          },
+          "matchStyle": {
+            "type": "string",
+            "enum": ["filename", "relativePath", "absolutePath"]
+          },
+          "glob": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "matchStyle": {
+                      "type": "string",
+                      "enum": ["filename", "relativePath", "absolutePath"]
+                    },
+                    "glob": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": ["glob"]
+                }
+              }
+            ]
+          },
+          "role": {
+            "type": "string"
+          },
+          "roleTemplate": {
+            "type": "string"
+          }
+        },
+        "required": ["glob", "role"]
+      }
     },
     "include": {
       "type": "array",
