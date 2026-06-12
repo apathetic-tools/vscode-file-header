@@ -15,8 +15,6 @@
 Adds a **single-line file-header comment** containing the _relative filepath_ and an optional _role label_ at the top of your files.  
 Perfect for developers who often paste files into chat — whether to **AI assistants** or **other humans**.
 
-
-
 ## Features
 
 - ⚡ **Auto-Inserts on Save:** Automatically adds headers when saving a file.
@@ -47,7 +45,7 @@ code --install-extension vscode-file-header-0.0.1.vsix
 
 ## Configuration & Defaults
 
-This extension is strictly **zero-configuration** by default. We provide sensible, non-destructive behavior out of the box so you don't have to configure anything. 
+This extension is strictly **zero-configuration** by default. We provide sensible, non-destructive behavior out of the box so you don't have to configure anything.
 
 Here is what you can expect by default:
 

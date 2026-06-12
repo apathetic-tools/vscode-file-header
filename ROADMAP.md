@@ -45,7 +45,7 @@ Core logic for detecting, generating, and updating headers.
 
 Enhancing configurability, schema validation, and migration.
 
-- [ ] Fill out `languagesByPath` and special-case defaults (`.gitignore`, `.vscode/`, `.github/`)
+- [x] Fill out `languagesByPath` and special-case defaults (`.gitignore`, `.vscode/`, `.github/`)
 - [x] Implement full config schema support
 - [x] Expose `fileHeader.languages` in VS Code settings (`contributes.configuration`)
 - [x] Update `package.json` to include all `fileHeader.*` configuration keys

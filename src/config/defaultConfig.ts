@@ -524,7 +524,98 @@ export const defaultConfig: FileHeaderConfig = {
 			},
 		},
 	},
-	languagesByPath: {},
+	languagesByPath: {
+		editorconfig: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: { glob: "**/.editorconfig", language: "EditorConfig" },
+		},
+		env: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: {
+				glob: "**/.env*",
+				language: "Dotenv",
+				format: "Environment Variables",
+			},
+		},
+		gitattributes: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: {
+				glob: "**/.gitattributes",
+				language: "Git",
+				format: "Attributes",
+			},
+		},
+		codeowners: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: {
+				glob: "**/CODEOWNERS",
+				language: "CODEOWNERS",
+			},
+		},
+		cursorignore: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: {
+				glob: "**/.cursorignore",
+				language: "Cursor",
+				format: "Ignore List",
+			},
+		},
+		gitignore: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: {
+				glob: "**/.gitignore",
+				language: "Git",
+				format: "Ignore List",
+			},
+		},
+		husky: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: [
+				{
+					glob: "**/.husky/pre-commit",
+					language: "Husky",
+					format: "pre-commit hook",
+				},
+				{
+					glob: "**/.husky/pre-push",
+					language: "Husky",
+					format: "pre-push hook",
+				},
+			],
+		},
+		npmrc: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: { glob: "**/.npmrc", language: "NPM", format: "Config" },
+		},
+		nvmrc: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: { glob: "**/.nvmrc", language: "NVM", format: "Config" },
+		},
+		prettierignore: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: {
+				glob: "**/.prettierignore",
+				language: "Prettier",
+				format: "Ignore List",
+			},
+		},
+		tool_versions: {
+			headerTemplate: "# ${headerLine}",
+			fileMatch: {
+				glob: "**/.tool-versions",
+				language: "asdf",
+				format: "Tool Versions",
+			},
+		},
+		vscode_config: {
+			headerTemplate: "// ${headerLine}",
+			fileMatch: {
+				glob: "**/.vscode/*.json",
+				language: "JSON",
+				format: "VS Code Config",
+			},
+		},
+	},
 	roles: {},
 	include: [],
 	exclude: [],
