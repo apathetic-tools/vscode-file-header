@@ -1,5 +1,6 @@
 // src/utils/index.ts
 export * from "./buildHeaderString";
+export * from "./documentHelpers";
 export * from "./findRoleLabel";
 export * from "./getEffectiveConfig";
 export * from "./hasValidHeader";

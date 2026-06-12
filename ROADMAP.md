@@ -31,7 +31,7 @@ Core logic for detecting, generating, and updating headers.
 
 - [x] Improve template resolution for `${language}`, `${format}`, `${role}`, `${context}`
 - [x] Handle shebang lines in scripts — insert header after `#!` when present
-- [ ] Handle frontmatter in markdown — insert header after `---` when present
+- [x] Handle frontmatter in markdown — insert header after `---` when present
 - [x] Add optional auto-update on save (`workspace.onDidSaveTextDocument`)
 - [ ] Add smart glob (GTP? regex?) and include/exclude handling for file targeting
 - [ ] Support all comment styles (single-line, multi-line, doc)

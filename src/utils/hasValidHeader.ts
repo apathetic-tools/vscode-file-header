@@ -1,5 +1,5 @@
-// src/hasValidHeader.ts
 import * as vscode from "vscode";
+import { getContentStartLine } from "./documentHelpers";
 import type { PathList } from "./types";
 
 /**
@@ -14,14 +14,11 @@ export function hasValidHeader(
 ): boolean {
 	if (document.lineCount === 0) return false;
 
+	const startLine = getContentStartLine(document);
+
 	// Find the first non-empty line
 	let firstNonBlank = "";
-	for (let i = 0; i < document.lineCount; i++) {
-		// Skip shebang which must be on the very first line
-		if (i === 0 && document.lineAt(0).text.startsWith("#!")) {
-			continue;
-		}
-
+	for (let i = startLine; i < document.lineCount; i++) {
 		const text = document.lineAt(i).text.trim();
 		if (text.length > 0) {
 			firstNonBlank = text;
@@ -62,12 +59,9 @@ export function hasValidHeader(
 export function findOutdatedHeaderLine(document: vscode.TextDocument): number | undefined {
 	if (document.lineCount === 0) return undefined;
 
-	for (let i = 0; i < document.lineCount; i++) {
-		// Skip shebang which must be on the very first line
-		if (i === 0 && document.lineAt(0).text.startsWith("#!")) {
-			continue;
-		}
+	const startLine = getContentStartLine(document);
 
+	for (let i = startLine; i < document.lineCount; i++) {
 		const text = document.lineAt(i).text.trim();
 		if (text.length > 0) {
 			// Check if it's a comment

@@ -21,7 +21,7 @@ This extension by default will:
 - **Auto-insert** a file header at the top of any file you save if it is missing one.
 - **Auto-update** an existing file header on save if you rename or move the file, keeping the path accurate for AI context.
 - Safely skip updating custom manual comments, copyrights, or docstrings.
-- Safely insert headers below `#!` shebang lines in executable scripts.
+- Skips shebang in scripts and frontmatter in markdown.
 
 ## Features
 
@@ -29,7 +29,7 @@ This extension by default will:
 - 🧭 **Contextual Headers:** Inserts the **relative filepath + filename** at the top of the file.
 - 💬 **Multi-Language:** Supports per-language comment styles (`//`, `#`, `<!-- -->`, `/* */`, etc.).
 - 🧠 **Smart Detection:** Automatically skips files that already have a valid header.
-- 📜 **Shebang Support:** Safely inserts the header below any existing `#!` script shebang lines.
+- 📜 **Smart Insertion:** Skips shebang in scripts and frontmatter in markdown.
 - 🧩 **Role Hints:** Optional **role** hints via glob patterns (e.g. `(React component)`).
 - 🏷️ **Format Modifiers:** Optional language **format** modifier (e.g. `(TypeScript React)`).
 - ⚙️ **Configurable:** Works with user, `.code-workspace`, `.vscode`, and local `.file-header` settings.
