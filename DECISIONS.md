@@ -36,23 +36,23 @@ Implications, trade-offs, or follow-ups to keep in mind.
 
 # Example
 
-## [2025-10-07] Example: Don't Auto-Update Headers on File Rename
+## [2026-06-11] Example: Auto-Update and Auto-Insert Headers by Default
 
 ### Context
 
-Auto-updating header paths sounded useful but caused confusion when the header diverged from intentional naming (e.g. generated or aliased files).
+Originally, auto-updating header paths was disabled to avoid confusion on renames, and auto-insert was not configurable. However, for a tool focused on "maximum convenience for AI context", **stale context is harmful**. If a user renames a file but forgets to update the header, they feed incorrect context to the LLM. 
 
 ### Options Considered
 
-- ✅ Disable automatic updates by default
-- 🔄 Enable by default with an opt-out
-- ⚙️ Make it configurable
+- 🔒 Safe by default: Opt-in only, manual updates.
+- ⚡ Convenient by default: Auto-insert and auto-update on save.
 
 ### Decision
 
-Set `autoUpdate = false` by default.
+Set `autoUpdate = true` and `autoInsert = true` by default. 
 
 ### Consequences
 
-- Simplifies mental model — users must explicitly choose to auto-update.
-- Slightly less convenient for file renames, but avoids silent edits.
+- **Pros**: The extension "just works" like Prettier. Stale context is eliminated, and zero-config magic is preserved.
+- **Cons**: Might cause unwanted edits if a user opens a file in a repo where headers aren't allowed.
+- **Mitigation**: We provide an easy opt-out via `.vscode/settings.json`, and our detection heuristic strictly ensures we only replace comments that look like our generated file paths (avoiding clobbering copyright headers or docstrings).

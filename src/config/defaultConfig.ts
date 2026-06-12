@@ -2,8 +2,11 @@
 import type { FileHeaderConfig } from "./types";
 
 export const defaultConfig: FileHeaderConfig = {
+	/** Automatically insert header on save if missing */
+	autoInsert: true,
+
 	/** Replace an outdated header path when file moves */
-	autoUpdate: false,
+	autoUpdate: true,
 
 	// === Display Header Parts ===
 

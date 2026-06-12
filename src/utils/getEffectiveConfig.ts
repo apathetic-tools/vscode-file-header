@@ -9,6 +9,7 @@ export function getEffectiveConfig(
 ): FileHeaderConfig {
 	// Explicitly build a plain object from the workspace settings
 	const userConfig: Partial<FileHeaderConfig> = {
+		autoInsert: vsConfig.get("autoInsert"),
 		autoUpdate: vsConfig.get("autoUpdate"),
 		filePathStyle: vsConfig.get("filePathStyle"),
 		showLanguage: vsConfig.get("showLanguage"),

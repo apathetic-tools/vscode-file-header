@@ -1,6 +1,9 @@
 // src/configTypes.ts
 
 export interface FileHeaderConfig {
+	/** Automatically insert header on save if missing */
+	autoInsert: boolean;
+
 	/** Replace an outdated header path when file moves */
 	autoUpdate: boolean;
 

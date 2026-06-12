@@ -68,3 +68,42 @@ describe("hasValidHeader()", () => {
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
 });
+
+import { findOutdatedHeaderLine } from "../../src/utils/hasValidHeader";
+
+describe("findOutdatedHeaderLine()", () => {
+	test("returns line number if comment looks like an old header with path", () => {
+		const doc = makeMockDocument({
+			text: "// src/components/OldName.tsx (React component)",
+		});
+		expect(findOutdatedHeaderLine(doc)).toBe(0);
+	});
+
+	test("returns line number after shebang", () => {
+		const doc = makeMockDocument({
+			text: ["#!/usr/bin/env node", "// src/components/OldName.tsx"].join("\n"),
+		});
+		expect(findOutdatedHeaderLine(doc)).toBe(1);
+	});
+
+	test("returns undefined for regular non-path comments", () => {
+		const doc = makeMockDocument({
+			text: "// This is just a regular comment about the file",
+		});
+		expect(findOutdatedHeaderLine(doc)).toBeUndefined();
+	});
+
+	test("returns undefined if first line is code", () => {
+		const doc = makeMockDocument({
+			text: "import React from 'react';",
+		});
+		expect(findOutdatedHeaderLine(doc)).toBeUndefined();
+	});
+
+	test("matches other comment styles", () => {
+		const doc = makeMockDocument({
+			text: "<!-- src/components/Button.vue -->",
+		});
+		expect(findOutdatedHeaderLine(doc)).toBe(0);
+	});
+});

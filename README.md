@@ -15,6 +15,14 @@
 Adds a **single-line file-header comment** containing the _relative filepath_ and an optional _role label_ at the top of your files.  
 Perfect for developers who often paste files into chat — whether to **AI assistants** or **other humans**.
 
+## Out of the box
+
+This extension by default will:
+- **Auto-insert** a file header at the top of any file you save if it is missing one.
+- **Auto-update** an existing file header on save if you rename or move the file, keeping the path accurate for AI context.
+- Safely skip updating custom manual comments, copyrights, or docstrings.
+- Safely insert headers below `#!` shebang lines in executable scripts.
+
 ## Features
 
 - ⚡ **Auto-Inserts on Save:** Automatically adds headers when saving a file.
