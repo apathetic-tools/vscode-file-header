@@ -17,6 +17,11 @@ export function hasValidHeader(
 	// Find the first non-empty line
 	let firstNonBlank = "";
 	for (let i = 0; i < document.lineCount; i++) {
+		// Skip shebang which must be on the very first line
+		if (i === 0 && document.lineAt(0).text.startsWith("#!")) {
+			continue;
+		}
+
 		const text = document.lineAt(i).text.trim();
 		if (text.length > 0) {
 			firstNonBlank = text;

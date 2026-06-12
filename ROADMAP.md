@@ -30,7 +30,7 @@ _(subject to change)_
 Core logic for detecting, generating, and updating headers.
 
 - [ ] Improve template resolution for `${language}`, `${format}`, `${role}`, `${context}`
-- [ ] Handle shebang lines in scripts — insert header after `#!` when present
+- [x] Handle shebang lines in scripts — insert header after `#!` when present
 - [ ] Handle frontmatter in markdown — insert header after `---` when present
 - [ ] Add optional auto-update on save (`workspace.onDidSaveTextDocument`)
 - [ ] Add smart glob (GTP? regex?) and include/exclude handling for file targeting

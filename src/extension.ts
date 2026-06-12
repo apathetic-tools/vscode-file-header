@@ -15,9 +15,14 @@ export function activate(context: vscode.ExtensionContext) {
 		const finalHeader = generateHeaderForDocument(config, doc);
 		if (!finalHeader) return;
 
+		let insertLine = 0;
+		if (doc.lineCount > 0 && doc.lineAt(0).text.startsWith("#!")) {
+			insertLine = 1;
+		}
+
 		event.waitUntil(
 			Promise.resolve([
-				vscode.TextEdit.insert(new vscode.Position(0, 0), finalHeader + "\n\n"),
+				vscode.TextEdit.insert(new vscode.Position(insertLine, 0), finalHeader + "\n\n"),
 			]),
 		);
 	});

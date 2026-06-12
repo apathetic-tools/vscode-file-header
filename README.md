@@ -17,12 +17,15 @@ Perfect for developers who often paste files into chat — whether to **AI assis
 
 ## Features
 
-- 🧭 Inserts **relative filepath + filename** as a comment at the top of the file.
-- 💬 Supports per-language comment styles (`//`, `#`, `<!-- -->`, etc.).
-- 🧩 Optional **role** hints via glob patterns in settings.
-- 🏷️ Optional language **format** modifier (e.g. `(TypeScript React)`).
-- ⚙️ Works with user, `.code-workspace`, `.vscode`, and `.file-header` settings.
-- ⚡ Minimal, fast, and MIT-licensed.
+- ⚡ **Auto-Inserts on Save:** Automatically adds headers when saving a file.
+- 🧭 **Contextual Headers:** Inserts the **relative filepath + filename** at the top of the file.
+- 💬 **Multi-Language:** Supports per-language comment styles (`//`, `#`, `<!-- -->`, `/* */`, etc.).
+- 🧠 **Smart Detection:** Automatically skips files that already have a valid header.
+- 📜 **Shebang Support:** Safely inserts the header below any existing `#!` script shebang lines.
+- 🧩 **Role Hints:** Optional **role** hints via glob patterns (e.g. `(React component)`).
+- 🏷️ **Format Modifiers:** Optional language **format** modifier (e.g. `(TypeScript React)`).
+- ⚙️ **Configurable:** Works with user, `.code-workspace`, `.vscode`, and local `.file-header` settings.
+- 🚀 **Zero-Config Default:** Sensible, non-destructive behavior out of the box. Minimal, fast, and MIT-licensed.
 
 ## Example
 
