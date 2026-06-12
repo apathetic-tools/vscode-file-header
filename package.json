@@ -800,7 +800,8 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "verify": "pnpm run lint:prettier & pnpm run lint:eslint & pnpm run lint:tsc & pnpm run test"
+    "verify": "pnpm run lint:prettier & pnpm run lint:eslint & pnpm run lint:tsc & pnpm run test",
+    "prepare": "husky"
   },
   "dependencies": {
     "ignore": "^7.0.5",
