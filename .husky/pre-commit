@@ -1,6 +1,2 @@
-#!/bin/sh
-# .husky/pre-commit
-. "$(dirname -- "$0")/_/husky.sh"
-
 echo "🔍 Running Prettier + eslint..."
 pnpm lint-staged
