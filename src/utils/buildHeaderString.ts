@@ -10,7 +10,7 @@ function fillTemplate(template: string, vars: Record<string, string>): string {
 
 /** Returns the file label according to config and path style. */
 function formatFileLabel(config: FileHeaderConfig, paths: PathList): string {
-	let pathValue = "";
+	let pathValue: string;
 	switch (config.filePathStyle) {
 		case "filename":
 			pathValue = paths.filename;
