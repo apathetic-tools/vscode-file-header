@@ -1,0 +1,1 @@
+Never ask to stage or commit files until I explicitly say "commit". If I ask for something else first, wait until I ask again. Always present the commit action as a single transaction line (e.g. git add ... && git commit -m "...").

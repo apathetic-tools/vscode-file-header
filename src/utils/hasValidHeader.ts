@@ -1,5 +1,10 @@
 import * as vscode from "vscode";
-import { getContentStartLine } from "./documentHelpers";
+import {
+	getCommentBlock,
+	getContentStartLine,
+	isCommentLine,
+	stripCommentTokens,
+} from "./documentHelpers";
 import type { PathList } from "./types";
 
 /**
@@ -17,23 +22,20 @@ export function hasValidHeader(
 	const startLine = getContentStartLine(document);
 
 	// Find the first non-empty line
-	let firstNonBlank = "";
+	let firstNonBlankIndex = -1;
 	for (let i = startLine; i < document.lineCount; i++) {
 		const text = document.lineAt(i).text.trim();
 		if (text.length > 0) {
-			firstNonBlank = text;
+			firstNonBlankIndex = i;
 			break;
 		}
 	}
-	if (!firstNonBlank) return false;
+	if (firstNonBlankIndex === -1) return false;
+
+	const firstNonBlank = document.lineAt(firstNonBlankIndex).text.trim();
 
 	// Skip non-comment first lines
-	if (
-		!firstNonBlank.startsWith("//") &&
-		!firstNonBlank.startsWith("#") &&
-		!firstNonBlank.startsWith("<!--") &&
-		!firstNonBlank.startsWith("/*")
-	) {
+	if (!isCommentLine(firstNonBlank, document.languageId)) {
 		return false;
 	}
 
@@ -49,7 +51,10 @@ export function hasValidHeader(
 		`(?:^|\\s)(${escapedAbsolute}|${escapedRelative}|${escapedFileName})(?:\\s|$)`,
 	);
 
-	return pattern.test(firstNonBlank);
+	// Get the entire comment block to search for the path
+	const commentBlock = getCommentBlock(document, firstNonBlankIndex, document.languageId);
+
+	return commentBlock.some(line => pattern.test(line));
 }
 
 /**
@@ -63,47 +68,38 @@ export function findOutdatedHeaderLine(
 
 	const startLine = getContentStartLine(document);
 
+	// Find the first non-empty line
+	let firstNonBlankIndex = -1;
 	for (let i = startLine; i < document.lineCount; i++) {
-		const text = document.lineAt(i).text.trim();
-		if (text.length > 0) {
-			// Check if it's a comment
-			if (
-				!text.startsWith("//") &&
-				!text.startsWith("#") &&
-				!text.startsWith("<!--") &&
-				!text.startsWith("/*") &&
-				!text.startsWith("%") &&
-				!text.startsWith("--") &&
-				!text.startsWith(";") &&
-				!text.startsWith("'") &&
-				!text.startsWith("(*") &&
-				!text.startsWith("{-") &&
-				!text.startsWith("{{!") &&
-				!text.startsWith("@*") &&
-				!text.startsWith("-#")
-			) {
-				return undefined;
-			}
+		if (document.lineAt(i).text.trim().length > 0) {
+			firstNonBlankIndex = i;
+			break;
+		}
+	}
+	if (firstNonBlankIndex === -1) return undefined;
 
-			// Strip common comment tokens
-			let stripped = text
-				.replace(/^(?:\/\/|#|<!--|\/\*|%|--|;|'|{-|{\!|\(\*|@\*|-#)\s*/, "")
-				.trim();
+	const firstNonBlank = document.lineAt(firstNonBlankIndex).text.trim();
 
-			// Strip common closing tokens
-			stripped = stripped.replace(/(?:-->|\*\/|%\}|\*@|#-\}|\*\))$/, "").trim();
+	// Check if it's a comment
+	if (!isCommentLine(firstNonBlank, document.languageId)) {
+		return undefined;
+	}
 
-			// Grab the first word (likely the file path)
-			const firstWord = stripped.split(/\s+/)[0];
-			if (!firstWord) return undefined;
+	const commentBlock = getCommentBlock(document, firstNonBlankIndex, document.languageId);
 
-			// If it looks like a path (contains a slash or ends in an extension), it's probably our old header
-			if (/[\/\\]/.test(firstWord) || /\.\w+$/.test(firstWord)) {
-				return i;
-			}
+	for (let idx = 0; idx < commentBlock.length; idx++) {
+		const text = commentBlock[idx];
+		// Strip common comment tokens
+		let stripped = stripCommentTokens(text, document.languageId);
 
-			// First non-blank line didn't match our heuristic, stop looking
-			return undefined;
+		// Grab the first word (likely the file path)
+		const firstWord = stripped.split(/\s+/)[0];
+		if (!firstWord) continue;
+
+		// If it looks like a path (contains a slash or ends in an extension), it's probably our old header
+		if (/[\/\\]/.test(firstWord) || /\.\w+$/.test(firstWord)) {
+			// Return the line index in the document
+			return firstNonBlankIndex + idx;
 		}
 	}
 

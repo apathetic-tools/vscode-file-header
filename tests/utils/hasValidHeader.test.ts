@@ -69,6 +69,27 @@ describe("hasValidHeader()", () => {
 		});
 		expect(hasValidHeader(doc, paths)).toBe(true);
 	});
+
+	test("returns true for block comments", () => {
+		const doc = makeMockDocument({ text: "/* Button.tsx */" });
+		expect(hasValidHeader(doc, paths)).toBe(true);
+	});
+
+	test("returns true for JSDoc style comments", () => {
+		const doc = makeMockDocument({ text: "/**\n * Button.tsx\n */" });
+		expect(hasValidHeader(doc, paths)).toBe(true);
+	});
+
+	test("returns true for other comment styles like python or html", () => {
+		let doc = makeMockDocument({ text: "# Button.tsx" });
+		expect(hasValidHeader(doc, paths)).toBe(true);
+
+		doc = makeMockDocument({ text: "<!-- Button.tsx -->" });
+		expect(hasValidHeader(doc, paths)).toBe(true);
+
+		doc = makeMockDocument({ text: "-- Button.tsx" });
+		expect(hasValidHeader(doc, paths)).toBe(true);
+	});
 });
 
 import { findOutdatedHeaderLine } from "../../src/utils/hasValidHeader";

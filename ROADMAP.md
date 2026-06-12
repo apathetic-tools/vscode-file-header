@@ -34,7 +34,7 @@ Core logic for detecting, generating, and updating headers.
 - [x] Handle frontmatter in markdown — insert header after `---` when present
 - [x] Add optional auto-update on save (`workspace.onDidSaveTextDocument`)
 - [ ] Add smart glob (GTP? regex?) and include/exclude handling for file targeting
-- [ ] Support all comment styles (single-line, multi-line, doc)
+- [x] Support all comment styles (single-line, multi-line, doc)
 - [x] Detect and skip existing license headers (regex-based)
 - [x] Handle edge cases like generated / ignored files (🤖?)
 - [ ] Configurable multi-line comment styles (🤖?)

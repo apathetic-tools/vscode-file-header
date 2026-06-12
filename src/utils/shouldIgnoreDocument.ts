@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import ignore from "ignore";
 import type { FileHeaderConfig } from "../config";
+import { isCommentLine } from "./documentHelpers";
 
 export async function shouldIgnoreDocument(
 	doc: vscode.TextDocument,
@@ -9,7 +10,7 @@ export async function shouldIgnoreDocument(
 	if (doc.lineCount > 0) {
 		const firstLine = doc.lineAt(0).text.trim().toLowerCase();
 		// Match common comment markers
-		const isComment = /^(?:\/\/|#|\/\*|\*|<!--|--|;|%|'|\{-)/.test(firstLine);
+		const isComment = isCommentLine(firstLine, doc.languageId);
 		const skipWords = config.skipWords || [];
 		const hasGeneratedKeyword = skipWords.some((word) => firstLine.includes(word.toLowerCase()));
 
