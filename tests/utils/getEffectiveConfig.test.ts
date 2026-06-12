@@ -42,7 +42,11 @@ describe("getEffectiveConfig()", () => {
 		});
 
 		const dummyUri = vscode.Uri.file("/test/file.ts") as vscode.Uri;
-		const result = await getEffectiveConfig(makeDefaultConfig(), vsConfig, dummyUri);
+		const result = await getEffectiveConfig(
+			makeDefaultConfig(),
+			vsConfig,
+			dummyUri,
+		);
 		expect(mergeSpy).toHaveBeenCalled();
 		expect(result.filePathStyle).toBe("filename");
 
@@ -57,7 +61,11 @@ describe("getEffectiveConfig()", () => {
 		const vsConfig = mockVsConfig();
 
 		const dummyUri = vscode.Uri.file("/test/file.ts") as vscode.Uri;
-		const result = await getEffectiveConfig(makeDefaultConfig(), vsConfig, dummyUri);
+		const result = await getEffectiveConfig(
+			makeDefaultConfig(),
+			vsConfig,
+			dummyUri,
+		);
 
 		// With the new logic, empty user config results in {} being passed as the second argument
 		expect(mergeSpy).toHaveBeenCalledWith(
@@ -76,9 +84,11 @@ describe("getEffectiveConfig()", () => {
 		});
 
 		const dummyUri = vscode.Uri.file("/test/file.ts") as vscode.Uri;
-		
+
 		// Mock workspace folder
-		(vscode.workspace.getWorkspaceFolder as import("vitest").Mock).mockReturnValue({
+		(
+			vscode.workspace.getWorkspaceFolder as import("vitest").Mock
+		).mockReturnValue({
 			uri: vscode.Uri.file("/test"),
 		});
 
@@ -90,17 +100,19 @@ describe("getEffectiveConfig()", () => {
 				"showFormat": false
 			}
 		`);
-		(vscode.workspace.fs.readFile as import("vitest").Mock).mockImplementation(async (uri: { path: string }) => {
-			if (uri.path.endsWith(".fileheader.jsonc")) {
-				return mockFileContent;
-			}
-			throw new Error("File not found");
-		});
+		(vscode.workspace.fs.readFile as import("vitest").Mock).mockImplementation(
+			async (uri: { path: string }) => {
+				if (uri.path.endsWith(".fileheader.jsonc")) {
+					return mockFileContent;
+				}
+				throw new Error("File not found");
+			},
+		);
 
 		const result = await getEffectiveConfig(defaultConfig, vsConfig, dummyUri);
 
 		// from file config
-		expect(result.autoInsert).toBe(false); 
+		expect(result.autoInsert).toBe(false);
 		expect(result.showFormat).toBe(false);
 
 		// from user config (overrides file config)

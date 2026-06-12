@@ -29,22 +29,14 @@
     },
     "filePathStyle": {
       "type": "string",
-      "enum": [
-        "filename",
-        "relativePath",
-        "absolutePath"
-      ],
+      "enum": ["filename", "relativePath", "absolutePath"],
       "default": "relativePath",
       "description": "What file path form to show in header",
       "scope": "resource"
     },
     "fileHeader.filePathStyle": {
       "type": "string",
-      "enum": [
-        "filename",
-        "relativePath",
-        "absolutePath"
-      ],
+      "enum": ["filename", "relativePath", "absolutePath"],
       "default": "relativePath",
       "description": "What file path form to show in header",
       "scope": "resource"
@@ -183,22 +175,14 @@
     },
     "matchStyle": {
       "type": "string",
-      "enum": [
-        "filename",
-        "relativePath",
-        "absolutePath"
-      ],
+      "enum": ["filename", "relativePath", "absolutePath"],
       "default": "relativePath",
       "description": "Match by this type of path",
       "scope": "resource"
     },
     "fileHeader.matchStyle": {
       "type": "string",
-      "enum": [
-        "filename",
-        "relativePath",
-        "absolutePath"
-      ],
+      "enum": ["filename", "relativePath", "absolutePath"],
       "default": "relativePath",
       "description": "Match by this type of path",
       "scope": "resource"
@@ -237,22 +221,40 @@
       "description": "Optional mapping of glob patterns to role/type labels. Example: { 'src/components/*': 'React component' }",
       "scope": "resource"
     },
-    "ignore": {
+    "include": {
       "type": "array",
       "items": {
         "type": "string"
       },
       "default": [],
-      "description": "Array of glob patterns or gitignore-style strings to ignore when inserting headers. Also respects `.gitignore` natively.",
+      "description": "Array of glob patterns (e.g. `src/**/*.ts`). If non-empty, only files matching these patterns will be processed.",
       "scope": "resource"
     },
-    "fileHeader.ignore": {
+    "fileHeader.include": {
       "type": "array",
       "items": {
         "type": "string"
       },
       "default": [],
-      "description": "Array of glob patterns or gitignore-style strings to ignore when inserting headers. Also respects `.gitignore` natively.",
+      "description": "Array of glob patterns (e.g. `src/**/*.ts`). If non-empty, only files matching these patterns will be processed.",
+      "scope": "resource"
+    },
+    "exclude": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Array of glob patterns (e.g. `tests/**/*.test.ts`). Files matching these patterns will be skipped.",
+      "scope": "resource"
+    },
+    "fileHeader.exclude": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Array of glob patterns (e.g. `tests/**/*.test.ts`). Files matching these patterns will be skipped.",
       "scope": "resource"
     },
     "skipWords": {

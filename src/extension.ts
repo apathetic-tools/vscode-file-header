@@ -100,7 +100,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 		event.waitUntil(
 			(async () => {
-				const config = await getEffectiveConfig(defaultConfig, vsConfig, doc.uri);
+				const config = await getEffectiveConfig(
+					defaultConfig,
+					vsConfig,
+					doc.uri,
+				);
 				if (await shouldIgnoreDocument(doc, config)) {
 					return [];
 				}

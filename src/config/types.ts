@@ -63,8 +63,11 @@ export interface FileHeaderConfig {
 	/** Optional roles to match against file globs */
 	roles?: Roles;
 
-	/** Patterns to ignore for header insertion */
-	ignore?: GlobString[];
+	/** Patterns to only process files matching these for header insertion */
+	include?: GlobString[];
+
+	/** Patterns to exclude files from header insertion */
+	exclude?: GlobString[];
 
 	/** Words that, if present in the first line comment, signal a generated file */
 	skipWords?: string[];

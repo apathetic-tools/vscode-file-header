@@ -22,16 +22,24 @@ export const window = {
 };
 
 export class Position {
-	constructor(public line: number, public character: number) {}
+	constructor(
+		public line: number,
+		public character: number,
+	) {}
 }
 
 export class Range {
-	constructor(public startLine: number, public startChar: number, public endLine: number, public endChar: number) {}
+	constructor(
+		public startLine: number,
+		public startChar: number,
+		public endLine: number,
+		public endChar: number,
+	) {}
 }
 
 export const TextEdit = {
-	insert: vi.fn((pos, text) => ({ type: 'insert', pos, text })),
-	replace: vi.fn((range, text) => ({ type: 'replace', range, text })),
+	insert: vi.fn((pos, text) => ({ type: "insert", pos, text })),
+	replace: vi.fn((range, text) => ({ type: "replace", range, text })),
 };
 
 export const Uri = {

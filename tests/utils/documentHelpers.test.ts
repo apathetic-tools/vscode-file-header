@@ -96,18 +96,28 @@ describe("isCommentLine()", () => {
 
 describe("stripCommentTokens()", () => {
 	test("strips single line comment tokens", () => {
-		expect(stripCommentTokens("// hello world", "javascript")).toBe("hello world");
+		expect(stripCommentTokens("// hello world", "javascript")).toBe(
+			"hello world",
+		);
 		expect(stripCommentTokens("# hello world", "python")).toBe("hello world");
 	});
 
 	test("strips block comment tokens", () => {
-		expect(stripCommentTokens("/* hello world */", "javascript")).toBe("hello world");
-		expect(stripCommentTokens("<!-- hello world -->", "html")).toBe("hello world");
+		expect(stripCommentTokens("/* hello world */", "javascript")).toBe(
+			"hello world",
+		);
+		expect(stripCommentTokens("<!-- hello world -->", "html")).toBe(
+			"hello world",
+		);
 	});
 
 	test("strips javadoc style prefixes", () => {
-		expect(stripCommentTokens("* hello world", "javascript")).toBe("hello world");
-		expect(stripCommentTokens("/** hello world */", "javascript")).toBe("hello world");
+		expect(stripCommentTokens("* hello world", "javascript")).toBe(
+			"hello world",
+		);
+		expect(stripCommentTokens("/** hello world */", "javascript")).toBe(
+			"hello world",
+		);
 	});
 
 	test("strips generic tokens when language unknown", () => {
@@ -120,7 +130,7 @@ describe("getCommentBlock()", () => {
 	test("extracts single line comment blocks", () => {
 		const doc = makeMockDocument({
 			text: ["// Line 1", "// Line 2", "const x = 1;"].join("\n"),
-			languageId: "javascript"
+			languageId: "javascript",
 		});
 		const block = getCommentBlock(doc, 0, "javascript");
 		expect(block).toEqual(["// Line 1", "// Line 2"]);
@@ -129,7 +139,7 @@ describe("getCommentBlock()", () => {
 	test("extracts block comments", () => {
 		const doc = makeMockDocument({
 			text: ["/*", " * Line 1", " * Line 2", " */", "const x = 1;"].join("\n"),
-			languageId: "javascript"
+			languageId: "javascript",
 		});
 		const block = getCommentBlock(doc, 0, "javascript");
 		expect(block).toEqual(["/*", "* Line 1", "* Line 2", "*/"]);
@@ -138,7 +148,7 @@ describe("getCommentBlock()", () => {
 	test("extracts single line block comment if closed on first line", () => {
 		const doc = makeMockDocument({
 			text: ["/* Line 1 */", "const x = 1;"].join("\n"),
-			languageId: "javascript"
+			languageId: "javascript",
 		});
 		const block = getCommentBlock(doc, 0, "javascript");
 		expect(block).toEqual(["/* Line 1 */"]);
@@ -147,7 +157,7 @@ describe("getCommentBlock()", () => {
 	test("extracts generic block comments when language unknown", () => {
 		const doc = makeMockDocument({
 			text: ["<!--", "Line 1", "-->", "content"].join("\n"),
-			languageId: "unknown-lang"
+			languageId: "unknown-lang",
 		});
 		const block = getCommentBlock(doc, 0, "unknown-lang");
 		expect(block).toEqual(["<!--", "Line 1", "-->"]);
@@ -156,7 +166,7 @@ describe("getCommentBlock()", () => {
 	test("stops extraction if not a comment line for single line style", () => {
 		const doc = makeMockDocument({
 			text: ["// Line 1", "const x = 1;", "// Line 2"].join("\n"),
-			languageId: "javascript"
+			languageId: "javascript",
 		});
 		const block = getCommentBlock(doc, 0, "javascript");
 		expect(block).toEqual(["// Line 1"]);

@@ -9,7 +9,7 @@ describe("Extension Entry Point", () => {
 
 	beforeEach(() => {
 		vi.clearAllMocks();
-		
+
 		mockContext = {
 			subscriptions: [],
 		} as unknown as vscode.ExtensionContext;
@@ -25,21 +25,23 @@ describe("Extension Entry Point", () => {
 		activate(mockContext);
 		expect(vscode.commands.registerCommand).toHaveBeenCalledWith(
 			"vscode-file-header.insertHeader",
-			expect.any(Function)
+			expect.any(Function),
 		);
 		expect(vscode.commands.registerCommand).toHaveBeenCalledWith(
 			"vscode-file-header.updateHeader",
-			expect.any(Function)
+			expect.any(Function),
 		);
 		expect(vscode.workspace.onWillSaveTextDocument).toHaveBeenCalledWith(
-			expect.any(Function)
+			expect.any(Function),
 		);
 	});
 
 	test("insertHeader command handles empty/untitled documents gracefully", async () => {
 		activate(mockContext);
-		const insertCommand = (vscode.commands.registerCommand as any).mock.calls.find(
-			(c: any[]) => c[0] === "vscode-file-header.insertHeader"
+		const insertCommand = (
+			vscode.commands.registerCommand as any
+		).mock.calls.find(
+			(c: any[]) => c[0] === "vscode-file-header.insertHeader",
 		)[1];
 
 		// No active editor
@@ -58,15 +60,17 @@ describe("Extension Entry Point", () => {
 
 	test("updateHeader command edits document", async () => {
 		activate(mockContext);
-		const updateCommand = (vscode.commands.registerCommand as any).mock.calls.find(
-			(c: any[]) => c[0] === "vscode-file-header.updateHeader"
+		const updateCommand = (
+			vscode.commands.registerCommand as any
+		).mock.calls.find(
+			(c: any[]) => c[0] === "vscode-file-header.updateHeader",
 		)[1];
 
 		const mockDoc = makeMockDocument({
 			text: "console.log('hello');",
 			languageId: "javascript",
 		});
-		
+
 		(vscode.window as any).activeTextEditor = {
 			document: mockDoc,
 			edit: vi.fn((callback) => {

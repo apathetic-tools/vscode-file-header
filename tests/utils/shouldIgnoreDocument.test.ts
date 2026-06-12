@@ -56,22 +56,30 @@ describe("shouldIgnoreDocument()", () => {
 		});
 	});
 
-	describe("config.ignore patterns", () => {
-		test("returns true if matches ignore pattern", async () => {
-			const doc = makeMockDocument({ fsPath: "/workspace/foo.txt" });
-			const config = makeDefaultConfig({ ignore: ["foo.txt"] });
-			expect(await shouldIgnoreDocument(doc, config)).toBe(true);
-		});
-
-		test("returns true if matches glob ignore pattern", async () => {
-			const doc = makeMockDocument({ fsPath: "/workspace/src/foo.txt" });
-			const config = makeDefaultConfig({ ignore: ["src/**/*.txt"] });
-			expect(await shouldIgnoreDocument(doc, config)).toBe(true);
-		});
-
-		test("returns false if does not match ignore pattern", async () => {
+	describe("config.include patterns", () => {
+		test("returns true if does not match any include pattern", async () => {
 			const doc = makeMockDocument({ fsPath: "/workspace/src/foo.js" });
-			const config = makeDefaultConfig({ ignore: ["src/**/*.txt"] });
+			const config = makeDefaultConfig({ include: ["src/**/*.ts"] });
+			expect(await shouldIgnoreDocument(doc, config)).toBe(true);
+		});
+
+		test("returns false if matches include pattern", async () => {
+			const doc = makeMockDocument({ fsPath: "/workspace/src/foo.ts" });
+			const config = makeDefaultConfig({ include: ["src/**/*.ts"] });
+			expect(await shouldIgnoreDocument(doc, config)).toBe(false);
+		});
+	});
+
+	describe("config.exclude patterns", () => {
+		test("returns true if matches exclude pattern", async () => {
+			const doc = makeMockDocument({ fsPath: "/workspace/src/foo.test.ts" });
+			const config = makeDefaultConfig({ exclude: ["**/*.test.ts"] });
+			expect(await shouldIgnoreDocument(doc, config)).toBe(true);
+		});
+
+		test("returns false if does not match exclude pattern", async () => {
+			const doc = makeMockDocument({ fsPath: "/workspace/src/foo.ts" });
+			const config = makeDefaultConfig({ exclude: ["**/*.test.ts"] });
 			expect(await shouldIgnoreDocument(doc, config)).toBe(false);
 		});
 	});

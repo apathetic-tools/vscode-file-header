@@ -526,7 +526,8 @@ export const defaultConfig: FileHeaderConfig = {
 	},
 	languagesByPath: {},
 	roles: {},
-	ignore: [],
+	include: [],
+	exclude: [],
 	skipWords: [
 		"auto",
 		"automatically",

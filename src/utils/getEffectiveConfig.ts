@@ -55,7 +55,8 @@ export async function getEffectiveConfig(
 		"languagesById",
 		"languagesByPath",
 		"roles",
-		"ignore",
+		"include",
+		"exclude",
 		"skipWords",
 	];
 

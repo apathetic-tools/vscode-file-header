@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import ignore from "ignore";
+import { minimatch } from "minimatch";
 import type { FileHeaderConfig } from "../config";
 import { isCommentLine } from "./documentHelpers";
 
@@ -33,9 +34,20 @@ export async function shouldIgnoreDocument(
 
 	const relativePath = vscode.workspace.asRelativePath(uri, false);
 
-	if (config.ignore && config.ignore.length > 0) {
-		const configIg = ignore().add(config.ignore);
-		if (configIg.ignores(relativePath)) {
+	if (config.include && config.include.length > 0) {
+		const isIncluded = config.include.some((pattern) =>
+			minimatch(relativePath, pattern, { dot: true }),
+		);
+		if (!isIncluded) {
+			return true;
+		}
+	}
+
+	if (config.exclude && config.exclude.length > 0) {
+		const isExcluded = config.exclude.some((pattern) =>
+			minimatch(relativePath, pattern, { dot: true }),
+		);
+		if (isExcluded) {
 			return true;
 		}
 	}
