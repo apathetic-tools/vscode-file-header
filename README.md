@@ -2,8 +2,8 @@
 
 # Apathetic File Header for AI
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic.file-header-ai?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic.file-header-ai?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai)
 [![CI](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
@@ -35,7 +35,7 @@ Perfect for developers who often paste files into chat — whether to **AI assis
 
 ## Installation
 
-Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header) or the [Open VSX Registry](https://open-vsx.org/extension/apathetic/vscode-file-header).
+Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai) or the [Open VSX Registry](https://open-vsx.org/extension/apathetic/file-header-ai).
 
 ## Configuration & Defaults
 
