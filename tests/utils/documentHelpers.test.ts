@@ -1,4 +1,9 @@
-import { getContentStartLine } from "../../src/utils/documentHelpers";
+import {
+	getContentStartLine,
+	isCommentLine,
+	stripCommentTokens,
+	getCommentBlock,
+} from "../../src/utils/documentHelpers";
 import { makeMockDocument } from "../helpers";
 
 describe("getContentStartLine()", () => {
@@ -57,5 +62,103 @@ describe("getContentStartLine()", () => {
 			languageId: "markdown",
 		});
 		expect(getContentStartLine(doc)).toBe(0);
+	});
+});
+
+describe("isCommentLine()", () => {
+	test("identifies single line comments based on languageId", () => {
+		expect(isCommentLine("// hello", "javascript")).toBe(true);
+		expect(isCommentLine("# hello", "python")).toBe(true);
+		expect(isCommentLine("-- hello", "sql")).toBe(true);
+		expect(isCommentLine("<!-- hello", "html")).toBe(true);
+	});
+
+	test("identifies block comments start", () => {
+		expect(isCommentLine("/* hello", "javascript")).toBe(true);
+		expect(isCommentLine("<!-- hello", "html")).toBe(true);
+	});
+
+	test("identifies javadoc style block comment continuation", () => {
+		expect(isCommentLine("* hello", "javascript")).toBe(true);
+	});
+
+	test("falls back to generic regex if languageId is unknown", () => {
+		expect(isCommentLine("// hello", "unknown-lang")).toBe(true);
+		expect(isCommentLine("# hello", "unknown-lang")).toBe(true);
+		expect(isCommentLine("/* hello", "unknown-lang")).toBe(true);
+	});
+
+	test("returns false for non-comments", () => {
+		expect(isCommentLine("console.log()", "javascript")).toBe(false);
+		expect(isCommentLine("def foo():", "python")).toBe(false);
+	});
+});
+
+describe("stripCommentTokens()", () => {
+	test("strips single line comment tokens", () => {
+		expect(stripCommentTokens("// hello world", "javascript")).toBe("hello world");
+		expect(stripCommentTokens("# hello world", "python")).toBe("hello world");
+	});
+
+	test("strips block comment tokens", () => {
+		expect(stripCommentTokens("/* hello world */", "javascript")).toBe("hello world");
+		expect(stripCommentTokens("<!-- hello world -->", "html")).toBe("hello world");
+	});
+
+	test("strips javadoc style prefixes", () => {
+		expect(stripCommentTokens("* hello world", "javascript")).toBe("hello world");
+		expect(stripCommentTokens("/** hello world */", "javascript")).toBe("hello world");
+	});
+
+	test("strips generic tokens when language unknown", () => {
+		expect(stripCommentTokens("// hello", "unknown-lang")).toBe("hello");
+		expect(stripCommentTokens("/* hello */", "unknown-lang")).toBe("hello");
+	});
+});
+
+describe("getCommentBlock()", () => {
+	test("extracts single line comment blocks", () => {
+		const doc = makeMockDocument({
+			text: ["// Line 1", "// Line 2", "const x = 1;"].join("\n"),
+			languageId: "javascript"
+		});
+		const block = getCommentBlock(doc, 0, "javascript");
+		expect(block).toEqual(["// Line 1", "// Line 2"]);
+	});
+
+	test("extracts block comments", () => {
+		const doc = makeMockDocument({
+			text: ["/*", " * Line 1", " * Line 2", " */", "const x = 1;"].join("\n"),
+			languageId: "javascript"
+		});
+		const block = getCommentBlock(doc, 0, "javascript");
+		expect(block).toEqual(["/*", "* Line 1", "* Line 2", "*/"]);
+	});
+
+	test("extracts single line block comment if closed on first line", () => {
+		const doc = makeMockDocument({
+			text: ["/* Line 1 */", "const x = 1;"].join("\n"),
+			languageId: "javascript"
+		});
+		const block = getCommentBlock(doc, 0, "javascript");
+		expect(block).toEqual(["/* Line 1 */"]);
+	});
+
+	test("extracts generic block comments when language unknown", () => {
+		const doc = makeMockDocument({
+			text: ["<!--", "Line 1", "-->", "content"].join("\n"),
+			languageId: "unknown-lang"
+		});
+		const block = getCommentBlock(doc, 0, "unknown-lang");
+		expect(block).toEqual(["<!--", "Line 1", "-->"]);
+	});
+
+	test("stops extraction if not a comment line for single line style", () => {
+		const doc = makeMockDocument({
+			text: ["// Line 1", "const x = 1;", "// Line 2"].join("\n"),
+			languageId: "javascript"
+		});
+		const block = getCommentBlock(doc, 0, "javascript");
+		expect(block).toEqual(["// Line 1"]);
 	});
 });

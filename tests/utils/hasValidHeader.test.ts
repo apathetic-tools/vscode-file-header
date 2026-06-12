@@ -129,4 +129,23 @@ describe("findOutdatedHeaderLine()", () => {
 		});
 		expect(findOutdatedHeaderLine(doc)).toBe(0);
 	});
+
+	test("returns undefined for empty document", () => {
+		const doc = makeMockDocument({});
+		expect(findOutdatedHeaderLine(doc)).toBeUndefined();
+	});
+
+	test("skips leading blank lines", () => {
+		const doc = makeMockDocument({
+			text: ["", "   ", "// src/components/OldName.tsx"].join("\n"),
+		});
+		expect(findOutdatedHeaderLine(doc)).toBe(2);
+	});
+
+	test("handles empty comment lines gracefully", () => {
+		const doc = makeMockDocument({
+			text: ["//", "// src/components/OldName.tsx"].join("\n"),
+		});
+		expect(findOutdatedHeaderLine(doc)).toBe(1);
+	});
 });
