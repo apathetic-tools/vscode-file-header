@@ -1,6 +1,6 @@
 <!-- README.md -->
 
-# File Header for AI
+# Apathetic File Header for AI
 
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/apathetic.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/apathetic.vscode-file-header?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.vscode-file-header)
