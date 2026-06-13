@@ -615,6 +615,14 @@ export const defaultConfig: FileHeaderConfig = {
 				format: "VS Code Config",
 			},
 		},
+		json_fallback: {
+			state: "disabled",
+			headerTemplate: "", // Required by type, but ignored because state is disabled
+			fileMatch: {
+				glob: "**/*.json",
+				language: "JSON",
+			},
+		},
 	},
 	roles: {},
 	include: [],

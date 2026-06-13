@@ -9,6 +9,7 @@ import {
 	hasValidHeader,
 	type ResolvedLanguageTemplate,
 } from "../utils";
+import { minimatch } from "minimatch";
 
 /**
  * Compute the header text to insert for a given document.
@@ -26,15 +27,15 @@ export function generateHeaderForDocument(
 	// Try languageId → then path
 	let template: ResolvedLanguageTemplate | undefined;
 
-	if (config.useLanguagesById) {
+	if (config.useLanguagesByPath) {
+		template = generateHeaderByPath(config, doc, paths);
+	}
+
+	if (!template && config.useLanguagesById) {
 		template = generateHeaderByLanguageId(config, doc);
 		if (template && template.state && template.state === "fallback") {
 			template = undefined;
 		}
-	}
-
-	if (!template && config.useLanguagesByPath) {
-		template = generateHeaderByPath(config, doc, paths);
 	}
 
 	if (!template || !template.headerTemplate || template.state === "disabled")
@@ -67,14 +68,50 @@ export function generateHeaderByLanguageId(
 	};
 }
 
-/**
- * Generate header based on file path (languagesByPath).
- * (Stub for future implementation)
- */
 export function generateHeaderByPath(
-	_config: FileHeaderConfig,
+	config: FileHeaderConfig,
 	_doc: vscode.TextDocument,
-	_paths: ReturnType<typeof getFilePaths>,
+	paths: ReturnType<typeof getFilePaths>,
 ): ResolvedLanguageTemplate | undefined {
-	return undefined; // placeholder for next step
+	if (!config.languagesByPath) return undefined;
+
+	for (const [customId, langEntry] of Object.entries(config.languagesByPath)) {
+		const fileMatches = Array.isArray(langEntry.fileMatch)
+			? langEntry.fileMatch
+			: [langEntry.fileMatch];
+
+		for (const match of fileMatches) {
+			const matchStyle =
+				match.matchStyle ?? langEntry.matchStyle ?? config.matchStyle;
+			const targetPath = paths[matchStyle] ?? paths.relativePath;
+
+			const globs = Array.isArray(match.glob) ? match.glob : [match.glob];
+
+			for (const g of globs) {
+				const patterns =
+					typeof g === "string"
+						? [g]
+						: Array.isArray(g.glob)
+							? g.glob
+							: [g.glob];
+
+				for (const pattern of patterns) {
+					if (minimatch(targetPath, pattern, { dot: true })) {
+						if (!langEntry.headerTemplate && langEntry.state !== "disabled")
+							return undefined;
+
+						return {
+							headerTemplate: langEntry.headerTemplate,
+							state: langEntry.state,
+							language: match.language ?? langEntry.language ?? customId,
+							format: match.format ?? langEntry.format,
+							context: match.context ?? undefined,
+						};
+					}
+				}
+			}
+		}
+	}
+
+	return undefined;
 }

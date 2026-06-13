@@ -18,7 +18,7 @@ exports[`Header output snapshots > generates correct header for html (index.html
 
 exports[`Header output snapshots > generates correct header for java (Main.java) 1`] = `"// Main.java (java)"`;
 
-exports[`Header output snapshots > generates correct header for jsonc (settings.json) 1`] = `"// settings.json (jsonc)"`;
+exports[`Header output snapshots > generates correct header for jsonc (.vscode/settings.json) 1`] = `undefined`;
 
 exports[`Header output snapshots > generates correct header for lua (script.lua) 1`] = `"-- script.lua (lua)"`;
 

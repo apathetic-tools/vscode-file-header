@@ -14,7 +14,7 @@ describe("Header output snapshots", () => {
 		{ languageId: "dockerfile", filename: "Dockerfile" },
 		{ languageId: "yaml", filename: "docker-compose.yml" },
 		{ languageId: "markdown", filename: "README.md" },
-		{ languageId: "jsonc", filename: "settings.json" },
+		{ languageId: "jsonc", filename: ".vscode/settings.json" },
 		{ languageId: "rust", filename: "main.rs" },
 		{ languageId: "go", filename: "main.go" },
 		{ languageId: "c", filename: "main.c" },
