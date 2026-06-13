@@ -84,9 +84,10 @@ Improving reliability and ensuring stability across changes.
 Packaging, publishing, and release automation.
 
 - [x] Tag and publish first public release (`v0.1.0`)
-- [ ] Add release checklist or GitHub Action for publishing
+- [x] Add release checklist or GitHub Action for publishing
 - [ ] Validate VS Code manifest and metadata automatically
-- [ ] Automate changelog generation for releases
+- [ ] Add `OVSX_PAT` to GitHub secrets and update semantic-release config once Open VSX namespace is approved
+- [x] Automate changelog generation for releases
 - [ ] Streamline versioning between extension + future CLI
 - [ ] Improve extension activation performance
 - [ ] 2026-06-19: Revisit and remove `@vscode/test-electron` and `@eslint/js` from `minimumReleaseAgeExclude` in `pnpm-workspace.yaml`

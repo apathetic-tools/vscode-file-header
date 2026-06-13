@@ -820,6 +820,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.9.2",
     "@types/vscode": "^1.120.0",
@@ -837,6 +839,8 @@
     "lint-staged": "^17.0.7",
     "mocha": "^11.7.6",
     "prettier": "^3.8.3",
+    "semantic-release": "^25.0.3",
+    "semantic-release-vsce": "^6.1.5",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.1",
     "vite-tsconfig-paths": "^6.1.1",
@@ -848,7 +852,7 @@
       "prettier --write",
       "eslint --fix"
     ],
-    "*.{json,.jsonc,md,mdx,yml,yaml}": [
+    "*.{js,cjs,mjs,json,.jsonc,md,mdx,yml,yaml}": [
       "prettier --write"
     ]
   }
