@@ -2,10 +2,10 @@
 
 # Apathetic File Header for AI
 
-[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version/apathetic.file-header-ai.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai)
-[![Installs](https://vsmarketplacebadges.dev/downloads-short/apathetic.file-header-ai.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai)
-[![CI](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml/badge.svg)](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version/apathetic.file-header-ai.svg?style=plastic&color=blue)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai)
+[![Installs](https://vsmarketplacebadges.dev/downloads-short/apathetic.file-header-ai.svg?style=plastic&color=5c2d91)](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai)
+[![CI](https://img.shields.io/github/actions/workflow/status/apathetic-tools/vscode-file-header/ci.yml?style=plastic)](https://github.com/apathetic-tools/vscode-file-header/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=plastic)](LICENSE)
 
 📘 **[Roadmap](./ROADMAP.md)** · 📝 **[Release Notes](https://github.com/apathetic-tools/vscode-file-header/releases)**
 
