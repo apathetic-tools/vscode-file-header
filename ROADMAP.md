@@ -89,6 +89,7 @@ Packaging, publishing, and release automation.
 - [ ] Automate changelog generation for releases
 - [ ] Streamline versioning between extension + future CLI
 - [ ] Improve extension activation performance
+- [ ] 2026-06-19: Revisit and remove `@vscode/test-electron` and `@eslint/js` from `minimum-release-age-exclude` in `.npmrc`
 
 ## 🧭 Design & Architecture
 

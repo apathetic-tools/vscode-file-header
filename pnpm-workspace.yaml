@@ -2,3 +2,18 @@ onlyBuiltDependencies:
   - "@vscode/vsce-sign"
   - esbuild
   - keytar
+
+# required by vsce since it can't deal with pnpm's symlinks well
+nodeLinker: hoisted
+
+# when vite-tsconfig-paths > 6.1.1 try removing this
+peerDependencyRules:
+  allowedVersions:
+    typescript: "6.x"
+
+# 7 days in minutes
+minimumReleaseAge: 10080
+
+# TODO(2026-06-19): Revisit and remove these exclusions on 2026-06-19
+minimumReleaseAgeExclude:
+  - "@vscode/test-electron"
