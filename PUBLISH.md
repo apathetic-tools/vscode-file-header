@@ -2,95 +2,59 @@
 
 # Publishing vscode-file-header
 
-This guide is for maintainers who publish new versions of the extension.
+Publishing is **100% automated** via GitHub Actions using `semantic-release`.
 
 ---
 
-## Prerequisites
+## Automated Publishing
 
-- Install [Visual Studio Code Extension Manager (vsce)](https://code.visualstudio.com/api/working-with-extensions/publishing-extension):
-  ```sh
-  pnpm add -D @vscode/vsce
-  ```
-- You must be a member of the `apathetic-tools` publisher on the VS Code Marketplace.
+When PRs are merged or commits are pushed directly to the `main` branch, the [Release Workflow](../.github/workflows/release.yml) automatically runs.
 
-Log in once (creates a personal access token):
+It analyzes the commit messages based on the [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
-```sh
-vsce login apathetic-tools
-```
+- `fix: ...` triggers a **Patch** release (`1.0.1 -> 1.0.2`)
+- `feat: ...` triggers a **Minor** release (`1.0.0 -> 1.1.0`)
+- `BREAKING CHANGE: ...` (or `type!: ...`) triggers a **Major** release (`1.x.x -> 2.0.0`)
+
+The pipeline will automatically:
+
+1. Bump the version number in `package.json`
+2. Generate the `CHANGELOG.md`
+3. Package the extension (`pnpm package`)
+4. Publish the `.vsix` to the Visual Studio Marketplace
+5. Publish a GitHub Release with the compiled `.vsix` attached
 
 ---
 
-## Steps to Publish
+## Manual Publishing (Fallback)
 
-1. **Update version number** in `package.json`  
-   Follow [semver](https://semver.org/):
-   - Patch → bug fixes (`0.0.1 → 0.0.2`)
-   - Minor → new features (`0.0.1 → 0.1.0`)
-   - Major → breaking changes (`0.x → 1.0.0`)
+If the CI pipeline fails and you must publish a hotfix manually from your local machine, follow these steps:
 
-2. **Commit & tag the release**
-
+1. **Ensure you are logged in**
+   ```sh
+   pnpm exec vsce login apathetic
+   ```
+2. **Update version number** in `package.json`
+3. **Commit & tag the release**
    ```sh
    git add package.json
-   git commit -m "release: v0.0.x"
-   git tag v0.0.x
+   git commit -m "release: v1.x.x"
+   git tag v1.x.x
    git push && git push --tags
    ```
-
-3. **Build the extension package**
-
+4. **Build the extension package**
    ```sh
    pnpm package
    ```
-
-   This creates `vscode-file-header-x.y.z.vsix`.
-
-4. **Publish to Marketplace**
+   This creates `file-header-ai-1.x.x.vsix`.
+5. **Publish to Marketplace**
    ```sh
-   pnpm publish
+   pnpm run publish
    ```
 
 ---
 
 ## Verifying the Release
 
-- The extension should appear/refresh on the [Marketplace page](https://marketplace.visualstudio.com/manage).
-- Optionally test by installing the `.vsix` directly:
-  ```sh
-  code --install-extension vscode-file-header-x.y.z.vsix
-  ```
-
----
-
-## Notes
-
-- `dist/` is generated and not tracked in Git.
-- `icon.png` is generated from `icon.svg`: `pnpm icon:png`
-- CI already ensures `pnpm check` and `pnpm build` pass before merging into `main`.
-- Publishing is manual for now — in the future this can be automated via GitHub Actions when tagging releases.
-- Always bump version numbers before publishing, or the Marketplace will reject the upload.
-- **GitHub Releases UI is the official changelog.**
-
-## GitHub Release Template
-
-```markdown
-## [x.y.z] - YYYY-MM-DD
-
-### Added
-
-- (new features here)
-
-### Changed
-
-- (improvements, refactors, or behavior changes here)
-
-### Fixed
-
-- (bug fixes here)
-
----
-
-📦 Published to the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic-tools.vscode-file-header).
-```
+- The extension should appear/refresh on the [Marketplace page](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai).
+- The [GitHub Releases page](https://github.com/apathetic-tools/vscode-file-header/releases) will have the official changelog and `.vsix` attachments.
