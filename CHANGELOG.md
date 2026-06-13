@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/apathetic-tools/vscode-file-header/compare/v1.0.0...v1.0.1) (2026-06-13)
+
+### Bug Fixes
+
+- default to standard json over vscode jsonc ([46fdd2e](https://github.com/apathetic-tools/vscode-file-header/commit/46fdd2e1c35b31b7227e2d7307a8f1fa891a0914))
+
 # 1.0.0 (2026-06-13)
 
 ### Bug Fixes
