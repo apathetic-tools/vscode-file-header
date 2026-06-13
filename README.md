@@ -56,9 +56,9 @@ If you wish to change these defaults, define specific include/exclude rules, or 
 
 ## Roadmap
 
-Version 1.0 will be **feature complete** for everyday and AI-chat use.  
-Future updates may expand configurability.  
-See [Roadmap.md](./Roadmap.md) for details.
+Version 1.0 is **production-ready** for everyday and AI-chat use.  
+We are still actively adding new features and expanding configurability!  
+See [ROADMAP.md](./ROADMAP.md) for details.
 
 ## Contributing
 
