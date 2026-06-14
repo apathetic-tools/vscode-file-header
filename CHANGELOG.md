@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/apathetic-tools/vscode-file-header/compare/v1.1.0...v1.1.1) (2026-06-14)
+
+### Bug Fixes
+
+- broaden VS Code engine compatibility to 1.50.0+ ([7ea6e73](https://github.com/apathetic-tools/vscode-file-header/commit/7ea6e73cd5830e3a9820e9c23a9c307ac339429e))
+
 # [1.1.0](https://github.com/apathetic-tools/vscode-file-header/compare/v1.0.1...v1.1.0) (2026-06-14)
 
 ### Features
