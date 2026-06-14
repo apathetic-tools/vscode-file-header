@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/apathetic-tools/vscode-file-header/compare/v1.0.1...v1.1.0) (2026-06-14)
+
+### Features
+
+- add support for Open VSX publishing ([e12b270](https://github.com/apathetic-tools/vscode-file-header/commit/e12b270eb16558bb166b30a78c1cc54d3b3d90c9))
+
 ## [1.0.1](https://github.com/apathetic-tools/vscode-file-header/compare/v1.0.0...v1.0.1) (2026-06-13)
 
 ### Bug Fixes
