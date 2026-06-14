@@ -75,6 +75,9 @@ importers:
       mocha:
         specifier: ^11.7.6
         version: 11.7.6
+      ovsx:
+        specifier: ^1.0.0
+        version: 1.0.0
       prettier:
         specifier: ^3.8.3
         version: 3.8.3
@@ -2534,6 +2537,11 @@ packages:
 
   ovsx@0.10.12:
     resolution: {integrity: sha512-WwMj1iQDvCk02029oxPnkFXsPrHZ+WzmoNW5pJ8JGepHtL30i2JE4s3C3wqzQqj6a35vx2hp0gV3TdfefGmvMg==}
+    engines: {node: '>= 20'}
+    hasBin: true
+
+  ovsx@1.0.0:
+    resolution: {integrity: sha512-bDxwb55DNbybe10chWlnofj6ZJuER1LjFaQKUtUL9SW8l9P5Vqn7LfI23IFtmtuSJ82pYX0R+MisomXPKNGR9A==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -5946,6 +5954,20 @@ snapshots:
       strip-ansi: 7.2.0
 
   ovsx@0.10.12:
+    dependencies:
+      '@vscode/vsce': 3.9.2
+      commander: 6.2.1
+      follow-redirects: 1.16.0
+      is-ci: 2.0.0
+      leven: 3.1.0
+      semver: 7.8.2
+      tmp: 0.2.7
+      yauzl-promise: 4.0.0
+    transitivePeerDependencies:
+      - debug
+      - supports-color
+
+  ovsx@1.0.0:
     dependencies:
       '@vscode/vsce': 3.9.2
       commander: 6.2.1

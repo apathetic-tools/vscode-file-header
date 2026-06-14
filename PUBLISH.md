@@ -21,8 +21,10 @@ The pipeline will automatically:
 1. Bump the version number in `package.json`
 2. Generate the `CHANGELOG.md`
 3. Package the extension (`pnpm package`)
-4. Publish the `.vsix` to the Visual Studio Marketplace
+4. Publish the `.vsix` to the **Visual Studio Marketplace** and **Open VSX Registry**
 5. Publish a GitHub Release with the compiled `.vsix` attached
+
+You can also manually trigger a release from the GitHub Actions tab by running the **Release Workflow** via `workflow_dispatch`.
 
 ---
 
@@ -47,14 +49,23 @@ If the CI pipeline fails and you must publish a hotfix manually from your local 
    pnpm package
    ```
    This creates `file-header-ai-1.x.x.vsix`.
-5. **Publish to Marketplace**
-   ```sh
-   pnpm run publish
-   ```
+5. **Publish to Marketplaces**
+   - Both Marketplaces (VSCE & Open VSX):
+     ```sh
+     pnpm run publish
+     ```
+   - Visual Studio Marketplace only:
+     ```sh
+     pnpm run publish:vsce
+     ```
+   - Open VSX Registry only:
+     ```sh
+     pnpm run publish:ovsx
+     ```
 
 ---
 
 ## Verifying the Release
 
-- The extension should appear/refresh on the [Marketplace page](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai).
+- The extension should appear/refresh on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai) and the [Open VSX Registry](https://open-vsx.org/extension/apathetic/file-header-ai).
 - The [GitHub Releases page](https://github.com/apathetic-tools/vscode-file-header/releases) will have the official changelog and `.vsix` attachments.
