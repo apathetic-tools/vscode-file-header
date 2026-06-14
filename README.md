@@ -37,6 +37,8 @@ Perfect for developers who often paste files into chat — whether to **AI assis
 
 Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=apathetic.file-header-ai) or the [Open VSX Registry](https://open-vsx.org/extension/apathetic/file-header-ai).
 
+**Compatibility:** This extension supports VS Code version **1.50.0** and newer (including forks like Antigravity IDE, Cursor, VSCodium, etc.).
+
 ## Configuration & Defaults
 
 This extension is strictly **zero-configuration** by default. We provide sensible, non-destructive behavior out of the box so you don't have to configure anything.
