@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/apathetic-tools/vscode-file-header/compare/v1.1.1...v1.1.2) (2026-06-28)
+
+### Bug Fixes
+
+- ignore URLs when looking for outdated headers ([6e6dd7c](https://github.com/apathetic-tools/vscode-file-header/commit/6e6dd7c376801deedc1188bb3a617f69485f491f))
+
 ## [1.1.1](https://github.com/apathetic-tools/vscode-file-header/compare/v1.1.0...v1.1.1) (2026-06-14)
 
 ### Bug Fixes
