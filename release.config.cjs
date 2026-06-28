@@ -1,3 +1,5 @@
+// release.config.cjs (javascript —  (ECMAScript))
+
 module.exports = {
 	branches: ["main"],
 	plugins: [

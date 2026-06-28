@@ -1,3 +1,5 @@
+<!-- DECISIONS.md (markdown) -->
+
 # DECISIONS.md
 
 A record of major design and implementation decisions in **file-header** — what was considered, what was chosen, and why.

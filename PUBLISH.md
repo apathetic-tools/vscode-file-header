@@ -1,4 +1,4 @@
-# <!-- PUBLISH.md -->
+<!-- PUBLISH.md (markdown) -->
 
 # Publishing vscode-file-header
 

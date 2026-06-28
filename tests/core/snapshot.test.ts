@@ -26,6 +26,7 @@ describe("Header output snapshots", () => {
 		{ languageId: "lua", filename: "script.lua" },
 		{ languageId: "clojure", filename: "core.clj" },
 		{ languageId: "vb", filename: "script.vb" },
+		{ languageId: "ignore", filename: ".gitignore" },
 	];
 
 	for (const { languageId, filename } of testCases) {

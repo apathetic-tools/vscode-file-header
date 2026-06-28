@@ -1,4 +1,4 @@
-// tests/utils/hasValidHeader.test.ts
+// tests/utils/hasValidHeader.test.ts (typescript)
 
 /*
  ✓ returns true when header contains relative path
@@ -147,5 +147,16 @@ describe("findOutdatedHeaderLine()", () => {
 			text: ["//", "// src/components/OldName.tsx"].join("\n"),
 		});
 		expect(findOutdatedHeaderLine(doc)).toBe(1);
+	});
+
+	test("returns undefined for URLs in comments", () => {
+		const doc = makeMockDocument({
+			text: [
+				"# Inspired by Apathetic-Tools · MIT",
+				"# https://github.com/apathetic-tools/snippets/blob/main/docs/windows/development-setup",
+			].join("\n"),
+			languageId: "ignore",
+		});
+		expect(findOutdatedHeaderLine(doc)).toBeUndefined();
 	});
 });

@@ -110,6 +110,10 @@ export function findOutdatedHeaderLine(
 
 		// If it looks like a path (contains a slash or ends in an extension), it's probably our old header
 		if (/[/\\]/.test(firstWord) || /\.\w+$/.test(firstWord)) {
+			// Skip if it's a URL
+			if (/^https?:\/\//i.test(firstWord)) {
+				continue;
+			}
 			// Return the line index in the document
 			return firstNonBlankIndex + idx;
 		}

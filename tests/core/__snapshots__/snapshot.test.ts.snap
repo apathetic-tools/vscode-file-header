@@ -16,6 +16,8 @@ exports[`Header output snapshots > generates correct header for go (main.go) 1`]
 
 exports[`Header output snapshots > generates correct header for html (index.html) 1`] = `"<!-- index.html (html) -->"`;
 
+exports[`Header output snapshots > generates correct header for ignore (.gitignore) 1`] = `"# .gitignore (Git — Ignore List)"`;
+
 exports[`Header output snapshots > generates correct header for java (Main.java) 1`] = `"// Main.java (java)"`;
 
 exports[`Header output snapshots > generates correct header for jsonc (.vscode/settings.json) 1`] = `undefined`;
